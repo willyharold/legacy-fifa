@@ -1,0 +1,14 @@
+nano\fifaBundle\Entity\Discussion:
+    type: entity
+    table: null
+    repositoryClass: nano\fifaBundle\Repository\DiscussionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        sujet:
+            type: text
+    lifecycleCallbacks: {  }

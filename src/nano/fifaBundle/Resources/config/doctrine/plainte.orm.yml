@@ -1,0 +1,18 @@
+nano\fifaBundle\Entity\plainte:
+    type: entity
+    table: null
+    repositoryClass: nano\fifaBundle\Repository\plainteRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        contenu:
+            type: string
+            length: '1500'
+            nullable: true
+        date:
+            type: datetime
+    lifecycleCallbacks: {  }

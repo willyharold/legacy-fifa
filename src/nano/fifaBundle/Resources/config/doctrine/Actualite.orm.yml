@@ -1,0 +1,23 @@
+nano\fifaBundle\Entity\Actualite:
+    type: entity
+    table: null
+    repositoryClass: nano\fifaBundle\Repository\ActualiteRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        titre:
+            type: string
+            length: 255
+        priorite:
+            type: string
+            length: 255
+        etat:
+            type: string
+            length: 255
+        contenu:
+            type: text
+    lifecycleCallbacks: {  }

@@ -1,0 +1,22 @@
+nano\fifaBundle\Entity\Resultat:
+    type: entity
+    table: null
+    repositoryClass: nano\fifaBundle\Repository\ResultatRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        idVainqueur:
+            type: object
+            column: id_vainqueur
+        idPerdant:
+            type: object
+            column: id_perdant
+        nbreBut:
+            type: integer
+            nullable: true
+            column: nbre_but
+    lifecycleCallbacks: {  }

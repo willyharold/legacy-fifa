@@ -1,0 +1,16 @@
+nano\fifaBundle\Entity\Matchs:
+    type: entity
+    table: null
+    repositoryClass: nano\fifaBundle\Repository\MatchsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        date:
+            type: datetime
+        etat:
+            type: object
+    lifecycleCallbacks: {  }

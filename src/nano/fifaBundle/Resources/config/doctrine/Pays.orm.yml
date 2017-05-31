@@ -1,0 +1,16 @@
+nano\fifaBundle\Entity\Pays:
+    type: entity
+    table: null
+    repositoryClass: nano\fifaBundle\Repository\PaysRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nomPays:
+            type: string
+            length: 255
+            column: nom_pays
+    lifecycleCallbacks: {  }

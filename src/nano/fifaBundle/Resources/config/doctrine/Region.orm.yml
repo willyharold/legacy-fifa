@@ -1,0 +1,16 @@
+nano\fifaBundle\Entity\Region:
+    type: entity
+    table: null
+    repositoryClass: nano\fifaBundle\Repository\RegionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nomRegion:
+            type: string
+            length: 255
+            column: nom_region
+    lifecycleCallbacks: {  }

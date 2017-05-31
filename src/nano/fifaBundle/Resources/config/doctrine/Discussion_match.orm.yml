@@ -1,0 +1,11 @@
+nano\fifaBundle\Entity\Discussion_match:
+    type: entity
+    table: null
+    repositoryClass: nano\fifaBundle\Repository\Discussion_matchRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    lifecycleCallbacks: {  }
