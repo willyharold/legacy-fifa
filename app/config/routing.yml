@@ -1,5 +1,5 @@
 nanofifa:
-    resource: "@nanofifaBundle/Resources/config/routing.yml"
+    resource: "@NanoFifaBundle/Resources/config/routing.yml"
     prefix:   /
 
 app:

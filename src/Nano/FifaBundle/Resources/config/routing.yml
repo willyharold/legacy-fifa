@@ -1,0 +1,3 @@
+nanofifa_homepage:
+    path:     /
+    defaults: { _controller: NanoFifaBundle:Default:index }
