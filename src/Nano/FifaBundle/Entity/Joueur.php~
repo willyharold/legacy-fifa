@@ -12,6 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Joueur
 {
+
+     /**
+
+   * @ORM\OneToOne(targetEntity="Nano\fifaBundle\Entity\historique_credit", cascade={"persist"})
+   * @ORM\JoinColumn(nullable=false)
+   */
+
+   private $historiquecredit;
     /**
      * @var int
      *

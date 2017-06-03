@@ -29,14 +29,6 @@ class Region
 
     private $pays;
 
-     /**
-
-   * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Tournois", mappedBy="regions")
-
-   */
-
-    private $tournois;
-
     /**
      * @var string
      *

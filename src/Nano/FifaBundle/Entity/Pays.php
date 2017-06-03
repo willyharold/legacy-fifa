@@ -22,6 +22,17 @@ class Pays
     private $id;
 
     /**
+
+    * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Region", inversedBy="pays")
+
+    * @ORM\JoinColumn(nullable=false)
+
+    */
+
+    private $regions;
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="nompays", type="string", length=255, unique=true)

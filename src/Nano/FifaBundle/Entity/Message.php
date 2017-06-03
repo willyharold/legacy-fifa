@@ -22,6 +22,27 @@ class Message
     private $id;
 
     /**
+
+   * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Users", inversedBy="messages")
+
+   * @ORM\JoinColumn(nullable=false)
+
+   */
+
+  private $users;
+
+
+  /**
+
+   * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Discussion", inversedBy="messages")
+
+   * @ORM\JoinColumn(nullable=false)
+
+   */
+
+  private $discussion;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="contenu", type="string", length=255)
@@ -93,5 +114,52 @@ class Message
     {
         return $this->date;
     }
-}
 
+    /**
+     * Set users
+     *
+     * @param \Nano\FifaBundle\Entity\Users $users
+     *
+     * @return Message
+     */
+    public function setUsers(\Nano\FifaBundle\Entity\Users $users)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Nano\FifaBundle\Entity\Users
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Set discussion
+     *
+     * @param \Nano\FifaBundle\Entity\Discussion $discussion
+     *
+     * @return Message
+     */
+    public function setDiscussion(\Nano\FifaBundle\Entity\Discussion $discussion)
+    {
+        $this->discussion = $discussion;
+
+        return $this;
+    }
+
+    /**
+     * Get discussion
+     *
+     * @return \Nano\FifaBundle\Entity\Discussion
+     */
+    public function getDiscussion()
+    {
+        return $this->discussion;
+    }
+}

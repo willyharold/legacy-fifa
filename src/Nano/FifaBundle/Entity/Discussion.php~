@@ -23,7 +23,7 @@ class Discussion
 
     /**
 
-     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Message", mappedBy="discussion")
+     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Message", mappedBy="discusion")
 
      */
 

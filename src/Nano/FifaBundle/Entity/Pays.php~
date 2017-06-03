@@ -5,12 +5,12 @@ namespace Nano\FifaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Admin
+ * Pays
  *
- * @ORM\Table(name="admin")
- * @ORM\Entity(repositoryClass="Nano\FifaBundle\Repository\AdminRepository")
+ * @ORM\Table(name="pays")
+ * @ORM\Entity(repositoryClass="Nano\FifaBundle\Repository\PaysRepository")
  */
-class Admin
+class Pays
 {
     /**
      * @var int
@@ -24,9 +24,9 @@ class Admin
     /**
      * @var string
      *
-     * @ORM\Column(name="login", type="string", length=255, unique=true)
+     * @ORM\Column(name="nompays", type="string", length=255, unique=true)
      */
-    private $login;
+    private $nompays;
 
 
     /**
@@ -40,27 +40,27 @@ class Admin
     }
 
     /**
-     * Set login
+     * Set nompays
      *
-     * @param string $login
+     * @param string $nompays
      *
-     * @return Admin
+     * @return Pays
      */
-    public function setLogin($login)
+    public function setNompays($nompays)
     {
-        $this->login = $login;
+        $this->nompays = $nompays;
 
         return $this;
     }
 
     /**
-     * Get login
+     * Get nompays
      *
      * @return string
      */
-    public function getLogin()
+    public function getNompays()
     {
-        return $this->login;
+        return $this->nompays;
     }
 }
 

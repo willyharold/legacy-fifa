@@ -22,14 +22,6 @@ class Ligue
     private $id;
 
     /**
-
-   * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\PointLigue", cascade={"persist"})
-
-   */
-
-  private $pointligue;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)

@@ -40,28 +40,5 @@ class Suggestion
     {
         return $this->id;
     }
-
-    /**
-     * Set users
-     *
-     * @param \nano\FifaBundle\Entity\Users $users
-     *
-     * @return Suggestion
-     */
-    public function setUsers(\nano\FifaBundle\Entity\Users $users)
-    {
-        $this->users = $users;
-
-        return $this;
-    }
-
-    /**
-     * Get users
-     *
-     * @return \nano\FifaBundle\Entity\Users
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
 }
+

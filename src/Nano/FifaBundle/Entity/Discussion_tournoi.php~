@@ -40,28 +40,4 @@ class Discussion_tournoi
     {
         return $this->id;
     }
-
-    /**
-     * Set tournois
-     *
-     * @param \Nano\FifaBundle\Entity\Tournois $tournois
-     *
-     * @return Discussion_tournoi
-     */
-    public function setTournois(\Nano\FifaBundle\Entity\Tournois $tournois)
-    {
-        $this->tournois = $tournois;
-
-        return $this;
-    }
-
-    /**
-     * Get tournois
-     *
-     * @return \Nano\FifaBundle\Entity\Tournois
-     */
-    public function getTournois()
-    {
-        return $this->tournois;
-    }
 }

@@ -230,28 +230,4 @@ class Matchs
     {
         return $this->resultat;
     }
-
-    /**
-     * Set charge
-     *
-     * @param \Nano\FifaBundle\Entity\Charge $charge
-     *
-     * @return Matchs
-     */
-    public function setCharge(\Nano\FifaBundle\Entity\Charge $charge = null)
-    {
-        $this->charge = $charge;
-
-        return $this;
-    }
-
-    /**
-     * Get charge
-     *
-     * @return \Nano\FifaBundle\Entity\Charge
-     */
-    public function getCharge()
-    {
-        return $this->charge;
-    }
 }

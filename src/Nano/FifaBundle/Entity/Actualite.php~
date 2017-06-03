@@ -22,16 +22,6 @@ class Actualite
     private $id;
 
     /**
-
-    * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Tournois", inversedBy="actualites")
-
-    * @ORM\JoinColumn(nullable=false)
-
-    */
-
-    private $tournois;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255)

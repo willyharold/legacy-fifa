@@ -21,14 +21,6 @@ class Championat
      */
     private $id;
 
-    /**
-
-   * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\PointChampionat", cascade={"persist"})
-
-   */
-
-  private $pointchampionat;
-
 
     /**
      * Get id
