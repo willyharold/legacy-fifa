@@ -13,73 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Users
 {
     /**
-
-     * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\historique_credit", cascade={"persist"})
-
-     * @ORM\JoinColumn(nullable=false)
-
-  */
-
-     private $historiquecredit;
-
-   /**
-
-     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Message", mappedBy="users")
-
-     */
-
-     private $messages;
-
-    /**
-
-     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Participe", mappedBy="users")
-
-     */
-
-     private $participes;
-
-    /**
-
-     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\PariMatch", mappedBy="users")
-
-     */
-
-      private $parimatchs;
-
-
-     /**
-
-   * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Plainte", mappedBy="users")
-
-   */
-
-    private $plaintes;
-
-    /**
-
-   * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Suggestion", mappedBy="users")
-
-   */
-
-    private $suggestions;
-
-    /**
-
-   * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\PointChampionat", mappedBy="users")
-
-   */
-
-    private $pointchampionats;
-
-    /**
-
-   * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\PointLigue", mappedBy="users")
-
-   */
-
-    private $pointligues;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -87,6 +20,66 @@ class Users
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\historique_credit", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+    */
+
+     private $historiquecredit;
+
+   /**
+     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Message", mappedBy="users")
+     * @var $messages []
+     */
+     private $messages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Participe", mappedBy="users")
+     * @var $participes []
+     */
+     private $participes;
+
+    /**
+
+     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\PariMatch", mappedBy="users")
+     * @var $parimatchs []
+
+     */
+    private $parimatchs;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Plainte", mappedBy="users")
+    *@var $plaintes []
+    */
+    private $plaintes;
+
+    /**
+    *
+    * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Suggestion", mappedBy="users")
+    *@var $suggestions []
+    */
+    private $suggestions;
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Matchs", mappedBy="users_int")
+     *@var $matchs_int []
+     */
+    private $matchs_int;
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Matchs", mappedBy="users_ext")
+     *@var $matchs_ext []
+     */
+    private $matchs_ext;
+
+    /**
+    *
+    * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Point", mappedBy="users")
+    *@var $point_tournois []
+    */
+    private $point_tournois;
 
     /**
      * @var string
@@ -103,16 +96,16 @@ class Users
     private $mails;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="credit", type="string", length=255)
+     * @ORM\Column(name="credit", type="integer", length=255)
      */
     private $credit;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="photo", type="integer", length=255)
+     * @ORM\Column(name="photo", type="string", length=255)
      */
     private $photo;
 
@@ -124,20 +117,20 @@ class Users
     private $point;
 
     /**
-     * @var string
+     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Reglement", mappedBy="users")
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @var $reglement []
      */
-    private $password;
+    private $reglement;
 
     /**
-     * @var string
+
+     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Tchat", mappedBy="users")
      *
-     * @ORM\Column(name="login", type="string", length=255)
+     * @var $tchat []
      */
-    private $login;
 
-
+    private $tchat;
     /**
      * Get id
      *
@@ -560,11 +553,11 @@ class Users
     /**
      * Add pointligue
      *
-     * @param \Nano\FifaBundle\Entity\PointLigue $pointligue
+     * @param \Nano\FifaBundle\Entity\Point $pointligue
      *
      * @return Users
      */
-    public function addPointligue(\Nano\FifaBundle\Entity\PointLigue $pointligue)
+    public function addPointligue(\Nano\FifaBundle\Entity\Point $pointligue)
     {
         $this->pointligues[] = $pointligue;
 
@@ -574,9 +567,9 @@ class Users
     /**
      * Remove pointligue
      *
-     * @param \Nano\FifaBundle\Entity\PointLigue $pointligue
+     * @param \Nano\FifaBundle\Entity\Point $pointligue
      */
-    public function removePointligue(\Nano\FifaBundle\Entity\PointLigue $pointligue)
+    public function removePointligue(\Nano\FifaBundle\Entity\Point $pointligue)
     {
         $this->pointligues->removeElement($pointligue);
     }
@@ -589,5 +582,175 @@ class Users
     public function getPointligues()
     {
         return $this->pointligues;
+    }
+
+    /**
+     * Add matchsInt
+     *
+     * @param \Nano\FifaBundle\Entity\Matchs $matchsInt
+     *
+     * @return Users
+     */
+    public function addMatchsInt(\Nano\FifaBundle\Entity\Matchs $matchsInt)
+    {
+        $this->matchs_int[] = $matchsInt;
+
+        return $this;
+    }
+
+    /**
+     * Remove matchsInt
+     *
+     * @param \Nano\FifaBundle\Entity\Matchs $matchsInt
+     */
+    public function removeMatchsInt(\Nano\FifaBundle\Entity\Matchs $matchsInt)
+    {
+        $this->matchs_int->removeElement($matchsInt);
+    }
+
+    /**
+     * Get matchsInt
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMatchsInt()
+    {
+        return $this->matchs_int;
+    }
+
+    /**
+     * Add matchsExt
+     *
+     * @param \Nano\FifaBundle\Entity\Matchs $matchsExt
+     *
+     * @return Users
+     */
+    public function addMatchsExt(\Nano\FifaBundle\Entity\Matchs $matchsExt)
+    {
+        $this->matchs_ext[] = $matchsExt;
+
+        return $this;
+    }
+
+    /**
+     * Remove matchsExt
+     *
+     * @param \Nano\FifaBundle\Entity\Matchs $matchsExt
+     */
+    public function removeMatchsExt(\Nano\FifaBundle\Entity\Matchs $matchsExt)
+    {
+        $this->matchs_ext->removeElement($matchsExt);
+    }
+
+    /**
+     * Get matchsExt
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMatchsExt()
+    {
+        return $this->matchs_ext;
+    }
+
+    /**
+     * Add reglement
+     *
+     * @param \Nano\FifaBundle\Entity\Reglement $reglement
+     *
+     * @return Users
+     */
+    public function addReglement(\Nano\FifaBundle\Entity\Reglement $reglement)
+    {
+        $this->reglement[] = $reglement;
+
+        return $this;
+    }
+
+    /**
+     * Remove reglement
+     *
+     * @param \Nano\FifaBundle\Entity\Reglement $reglement
+     */
+    public function removeReglement(\Nano\FifaBundle\Entity\Reglement $reglement)
+    {
+        $this->reglement->removeElement($reglement);
+    }
+
+    /**
+     * Get reglement
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReglement()
+    {
+        return $this->reglement;
+    }
+
+    /**
+     * Add tchat
+     *
+     * @param \Nano\FifaBundle\Entity\Tchat $tchat
+     *
+     * @return Users
+     */
+    public function addTchat(\Nano\FifaBundle\Entity\Tchat $tchat)
+    {
+        $this->tchat[] = $tchat;
+
+        return $this;
+    }
+
+    /**
+     * Remove tchat
+     *
+     * @param \Nano\FifaBundle\Entity\Tchat $tchat
+     */
+    public function removeTchat(\Nano\FifaBundle\Entity\Tchat $tchat)
+    {
+        $this->tchat->removeElement($tchat);
+    }
+
+    /**
+     * Get tchat
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTchat()
+    {
+        return $this->tchat;
+    }
+
+    /**
+     * Add pointTournois
+     *
+     * @param \Nano\FifaBundle\Entity\Point $pointTournois
+     *
+     * @return Users
+     */
+    public function addPointTournois(\Nano\FifaBundle\Entity\Point $pointTournois)
+    {
+        $this->point_tournois[] = $pointTournois;
+
+        return $this;
+    }
+
+    /**
+     * Remove pointTournois
+     *
+     * @param \Nano\FifaBundle\Entity\Point $pointTournois
+     */
+    public function removePointTournois(\Nano\FifaBundle\Entity\Point $pointTournois)
+    {
+        $this->point_tournois->removeElement($pointTournois);
+    }
+
+    /**
+     * Get pointTournois
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPointTournois()
+    {
+        return $this->point_tournois;
     }
 }

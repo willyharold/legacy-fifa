@@ -22,6 +22,16 @@ class Pays
     private $id;
 
     /**
+
+    * @ORM\OneToMany(targetEntity="nano\FifaBundle\Entity\Region", mappedBy="pays")
+    * @ORM\JoinColumn(nullable=false)
+     * @var $regions []
+
+    */
+    private $regions;
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="nompays", type="string", length=255, unique=true)
@@ -62,5 +72,28 @@ class Pays
     {
         return $this->nompays;
     }
-}
 
+    /**
+     * Set regions
+     *
+     * @param \nano\FifaBundle\Entity\Region $regions
+     *
+     * @return Pays
+     */
+    public function setRegions(\nano\FifaBundle\Entity\Region $regions)
+    {
+        $this->regions = $regions;
+
+        return $this;
+    }
+
+    /**
+     * Get regions
+     *
+     * @return \nano\FifaBundle\Entity\Region
+     */
+    public function getRegions()
+    {
+        return $this->regions;
+    }
+}

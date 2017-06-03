@@ -23,16 +23,15 @@ class Region
 
      /**
 
-   * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Pays", mappedBy="regions")
+   * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Pays", inversedBy="regions")
 
    */
-
     private $pays;
 
      /**
 
    * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Tournois", mappedBy="regions")
-
+    *@var $tournois []
    */
 
     private $tournois;
@@ -78,5 +77,94 @@ class Region
     {
         return $this->nomregion;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pays = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tournois = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add pay
+     *
+     * @param \Nano\FifaBundle\Entity\Pays $pay
+     *
+     * @return Region
+     */
+    public function addPay(\Nano\FifaBundle\Entity\Pays $pay)
+    {
+        $this->pays[] = $pay;
+
+        return $this;
+    }
+
+    /**
+     * Remove pay
+     *
+     * @param \Nano\FifaBundle\Entity\Pays $pay
+     */
+    public function removePay(\Nano\FifaBundle\Entity\Pays $pay)
+    {
+        $this->pays->removeElement($pay);
+    }
+
+    /**
+     * Get pays
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPays()
+    {
+        return $this->pays;
+    }
+
+    /**
+     * Add tournois
+     *
+     * @param \Nano\FifaBundle\Entity\Tournois $tournois
+     *
+     * @return Region
+     */
+    public function addTournois(\Nano\FifaBundle\Entity\Tournois $tournois)
+    {
+        $this->tournois[] = $tournois;
+
+        return $this;
+    }
+
+    /**
+     * Remove tournois
+     *
+     * @param \Nano\FifaBundle\Entity\Tournois $tournois
+     */
+    public function removeTournois(\Nano\FifaBundle\Entity\Tournois $tournois)
+    {
+        $this->tournois->removeElement($tournois);
+    }
+
+    /**
+     * Get tournois
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTournois()
+    {
+        return $this->tournois;
+    }
+
+    /**
+     * Set pays
+     *
+     * @param \Nano\FifaBundle\Entity\Pays $pays
+     *
+     * @return Region
+     */
+    public function setPays(\Nano\FifaBundle\Entity\Pays $pays = null)
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+}

@@ -25,10 +25,9 @@ class Actualite
 
     * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Tournois", inversedBy="actualites")
 
-    * @ORM\JoinColumn(nullable=false)
+    * @ORM\JoinColumn(nullable=true)
 
     */
-
     private $tournois;
 
     /**
@@ -165,5 +164,28 @@ class Actualite
     {
         return $this->contenu;
     }
-}
 
+    /**
+     * Set tournois
+     *
+     * @param \nano\FifaBundle\Entity\Tournois $tournois
+     *
+     * @return Actualite
+     */
+    public function setTournois(\nano\FifaBundle\Entity\Tournois $tournois = null)
+    {
+        $this->tournois = $tournois;
+
+        return $this;
+    }
+
+    /**
+     * Get tournois
+     *
+     * @return \nano\FifaBundle\Entity\Tournois
+     */
+    public function getTournois()
+    {
+        return $this->tournois;
+    }
+}

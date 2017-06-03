@@ -27,7 +27,7 @@ class Discussion
 
      */
 
-  private $messages;
+     private $messages;
 
     /**
      * @var string
@@ -36,6 +36,11 @@ class Discussion
      */
     private $sujet;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\Tournois")
+     *@ORM\JoinColumn(nullable=true)
+     */
+    private $tournois;
 
     /**
      * Get id
@@ -70,5 +75,69 @@ class Discussion
     {
         return $this->sujet;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add message
+     *
+     * @param \Nano\FifaBundle\Entity\Message $message
+     *
+     * @return Discussion
+     */
+    public function addMessage(\Nano\FifaBundle\Entity\Message $message)
+    {
+        $this->messages[] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Remove message
+     *
+     * @param \Nano\FifaBundle\Entity\Message $message
+     */
+    public function removeMessage(\Nano\FifaBundle\Entity\Message $message)
+    {
+        $this->messages->removeElement($message);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * Set tournois
+     *
+     * @param \Nano\FifaBundle\Entity\Tournois $tournois
+     *
+     * @return Discussion
+     */
+    public function setTournois(\Nano\FifaBundle\Entity\Tournois $tournois = null)
+    {
+        $this->tournois = $tournois;
+
+        return $this;
+    }
+
+    /**
+     * Get tournois
+     *
+     * @return \Nano\FifaBundle\Entity\Tournois
+     */
+    public function getTournois()
+    {
+        return $this->tournois;
+    }
+}

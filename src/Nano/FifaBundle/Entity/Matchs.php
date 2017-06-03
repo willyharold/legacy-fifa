@@ -19,28 +19,20 @@ class Matchs
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
-    /**
-
-   * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\Charge", cascade={"persist"})
-
-   */
-
-  private $charge;
+  private $id;
 
      /**
 
    * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\Resultat", cascade={"persist"})
+   * @ORM\JoinColumn(nullable=true)
 
    */
 
   private $resultat;
 
      /**
-
-     * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\PariMatch", mappedBy="matchs")
-
+     * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\PariMatch")
+     * @ORM\JoinColumn(nullable=true)
      */
 
   private $parimatchs;
@@ -49,6 +41,7 @@ class Matchs
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+
      */
     private $date;
 
@@ -59,7 +52,49 @@ class Matchs
      */
     private $etat;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type_match", type="string", length=255)
+     */
+    private $type_match;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nieme", type="integer", length=255)
+     */
+    private $nieme;
+
+    /**
+
+     * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="matchs_int")
+
+     * @ORM\JoinColumn(nullable=false)
+
+     */
+
+    private $users_int;
+
+    /**
+
+     * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="matchs_ext")
+
+     * @ORM\JoinColumn(nullable=false)
+
+     */
+
+    private $users_ext;
+
+
+    /**
+
+     * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Tournois", inversedBy="matchs")
+
+     * @ORM\JoinColumn(nullable=true)
+
+     */
+    private $tournois;
     /**
      * Get id
      *
@@ -253,5 +288,139 @@ class Matchs
     public function getCharge()
     {
         return $this->charge;
+    }
+
+    /**
+     * Set typeMatch
+     *
+     * @param string $typeMatch
+     *
+     * @return Matchs
+     */
+    public function setTypeMatch($typeMatch)
+    {
+        $this->type_match = $typeMatch;
+
+        return $this;
+    }
+
+    /**
+     * Get typeMatch
+     *
+     * @return string
+     */
+    public function getTypeMatch()
+    {
+        return $this->type_match;
+    }
+
+    /**
+     * Set nieme
+     *
+     * @param integer $nieme
+     *
+     * @return Matchs
+     */
+    public function setNieme($nieme)
+    {
+        $this->nieme = $nieme;
+
+        return $this;
+    }
+
+    /**
+     * Get nieme
+     *
+     * @return integer
+     */
+    public function getNieme()
+    {
+        return $this->nieme;
+    }
+
+    /**
+     * Set parimatchs
+     *
+     * @param \Nano\FifaBundle\Entity\PariMatch $parimatchs
+     *
+     * @return Matchs
+     */
+    public function setParimatchs(\Nano\FifaBundle\Entity\PariMatch $parimatchs = null)
+    {
+        $this->parimatchs = $parimatchs;
+
+        return $this;
+    }
+
+    /**
+     * Set usersInt
+     *
+     * @param \nano\FifaBundle\Entity\Users $usersInt
+     *
+     * @return Matchs
+     */
+    public function setUsersInt(\nano\FifaBundle\Entity\Users $usersInt)
+    {
+        $this->users_int = $usersInt;
+
+        return $this;
+    }
+
+    /**
+     * Get usersInt
+     *
+     * @return \nano\FifaBundle\Entity\Users
+     */
+    public function getUsersInt()
+    {
+        return $this->users_int;
+    }
+
+    /**
+     * Set usersExt
+     *
+     * @param \nano\FifaBundle\Entity\Users $usersExt
+     *
+     * @return Matchs
+     */
+    public function setUsersExt(\nano\FifaBundle\Entity\Users $usersExt)
+    {
+        $this->users_ext = $usersExt;
+
+        return $this;
+    }
+
+    /**
+     * Get usersExt
+     *
+     * @return \nano\FifaBundle\Entity\Users
+     */
+    public function getUsersExt()
+    {
+        return $this->users_ext;
+    }
+
+    /**
+     * Set tournois
+     *
+     * @param \Nano\FifaBundle\Entity\Tournois $tournois
+     *
+     * @return Matchs
+     */
+    public function setTournois(\Nano\FifaBundle\Entity\Tournois $tournois = null)
+    {
+        $this->tournois = $tournois;
+
+        return $this;
+    }
+
+    /**
+     * Get tournois
+     *
+     * @return \Nano\FifaBundle\Entity\Tournois
+     */
+    public function getTournois()
+    {
+        return $this->tournois;
     }
 }

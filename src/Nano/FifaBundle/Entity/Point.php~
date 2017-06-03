@@ -5,12 +5,12 @@ namespace Nano\FifaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PointChampionat
+ * Point
  *
- * @ORM\Table(name="point_championat")
- * @ORM\Entity(repositoryClass="Nano\FifaBundle\Repository\PointChampionatRepository")
+ * @ORM\Table(name="point_ligue")
+ * @ORM\Entity(repositoryClass="Nano\FifaBundle\Repository\PointLigueRepository")
  */
-class PointChampionat
+class Point
 {
     /**
      * @var int
@@ -23,13 +23,13 @@ class PointChampionat
 
    /**
 
-    * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="pointchampionats")
+    * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="point_tournois")
 
     * @ORM\JoinColumn(nullable=false)
 
     */
 
-  private $users;
+    private $users;
 
     /**
      * @var int
@@ -38,7 +38,14 @@ class PointChampionat
      */
     private $nbrePoints;
 
+    /**
 
+     * @ORM\OneToOne(targetEntity="nano\FifaBundle\Entity\Tournois", inversedBy="point")
+
+     * @ORM\JoinColumn(nullable=false)
+
+     */
+    private $tournois;
     /**
      * Get id
      *
@@ -54,7 +61,7 @@ class PointChampionat
      *
      * @param integer $nbrePoints
      *
-     * @return PointChampionat
+     * @return Point
      */
     public function setNbrePoints($nbrePoints)
     {
@@ -78,7 +85,7 @@ class PointChampionat
      *
      * @param \nano\FifaBundle\Entity\Users $users
      *
-     * @return PointChampionat
+     * @return Point
      */
     public function setUsers(\nano\FifaBundle\Entity\Users $users)
     {
@@ -95,5 +102,29 @@ class PointChampionat
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set tournois
+     *
+     * @param \nano\FifaBundle\Entity\Tournois $tournois
+     *
+     * @return Point
+     */
+    public function setTournois(\nano\FifaBundle\Entity\Tournois $tournois)
+    {
+        $this->tournois = $tournois;
+
+        return $this;
+    }
+
+    /**
+     * Get tournois
+     *
+     * @return \nano\FifaBundle\Entity\Tournois
+     */
+    public function getTournois()
+    {
+        return $this->tournois;
     }
 }

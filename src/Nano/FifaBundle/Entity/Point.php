@@ -5,12 +5,12 @@ namespace Nano\FifaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PointLigue
+ * Point
  *
- * @ORM\Table(name="point_ligue")
+ * @ORM\Table(name="point")
  * @ORM\Entity(repositoryClass="Nano\FifaBundle\Repository\PointLigueRepository")
  */
-class PointLigue
+class Point
 {
     /**
      * @var int
@@ -23,7 +23,7 @@ class PointLigue
 
    /**
 
-    * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="pointligues")
+    * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="point_tournois")
 
     * @ORM\JoinColumn(nullable=false)
 
@@ -38,7 +38,14 @@ class PointLigue
      */
     private $nbrePoints;
 
+    /**
 
+     * @ORM\OneToOne(targetEntity="nano\FifaBundle\Entity\Tournois", inversedBy="point")
+
+     * @ORM\JoinColumn(nullable=false)
+
+     */
+    private $tournois;
     /**
      * Get id
      *
@@ -54,7 +61,7 @@ class PointLigue
      *
      * @param integer $nbrePoints
      *
-     * @return PointLigue
+     * @return Point
      */
     public function setNbrePoints($nbrePoints)
     {
@@ -78,7 +85,7 @@ class PointLigue
      *
      * @param \nano\FifaBundle\Entity\Users $users
      *
-     * @return PointLigue
+     * @return Point
      */
     public function setUsers(\nano\FifaBundle\Entity\Users $users)
     {
@@ -95,5 +102,29 @@ class PointLigue
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set tournois
+     *
+     * @param \nano\FifaBundle\Entity\Tournois $tournois
+     *
+     * @return Point
+     */
+    public function setTournois(\nano\FifaBundle\Entity\Tournois $tournois)
+    {
+        $this->tournois = $tournois;
+
+        return $this;
+    }
+
+    /**
+     * Get tournois
+     *
+     * @return \nano\FifaBundle\Entity\Tournois
+     */
+    public function getTournois()
+    {
+        return $this->tournois;
     }
 }
