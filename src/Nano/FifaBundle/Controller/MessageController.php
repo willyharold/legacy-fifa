@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Message controller.
  *
- * @Route("message")
  */
 class MessageController extends Controller
 {
     /**
      * Lists all message entities.
      *
-     * @Route("/", name="message_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class MessageController extends Controller
     /**
      * Creates a new message entity.
      *
-     * @Route("/new", name="message_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class MessageController extends Controller
     /**
      * Finds and displays a message entity.
      *
-     * @Route("/{id}", name="message_show")
-     * @Method("GET")
      */
     public function showAction(Message $message)
     {
@@ -76,8 +68,6 @@ class MessageController extends Controller
     /**
      * Displays a form to edit an existing message entity.
      *
-     * @Route("/{id}/edit", name="message_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Message $message)
     {
@@ -101,8 +91,6 @@ class MessageController extends Controller
     /**
      * Deletes a message entity.
      *
-     * @Route("/{id}", name="message_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Message $message)
     {

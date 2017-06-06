@@ -1,0 +1,290 @@
+﻿
+/*************************
+*******Typography******
+**************************/
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700,100);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
+@import url(http://fonts.googleapis.com/css?family=Abel);
+
+
+
+.box {
+	
+	background:#FFF;
+	margin:20px auto;
+}
+.box1 {
+	
+	background:#FFF;
+	margin:2px;
+        padding-top:2px;
+        padding-bottom:2px;
+}
+.padding-moins {
+	padding: 0px 5px;
+}
+
+
+/*==================================================
+ * Effect 2
+ * ===============================================*/
+.effect2
+{
+  position: relative;
+}
+.effect2:before, .effect2:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+.effect2:after
+{
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
+.effect5
+{
+  position: relative;
+}
+.effect5:before, .effect5:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 25px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 25px 20px #777;
+  -moz-box-shadow: 0 25px 20px #777;
+  box-shadow: 0 25px 20px #777;
+  -webkit-transform: rotate(-8deg);
+  -moz-transform: rotate(-8deg);
+  -o-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  transform: rotate(-8deg);
+}
+.effect5:after
+{
+  -webkit-transform: rotate(8deg);
+  -moz-transform: rotate(8deg);
+  -o-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  transform: rotate(8deg);
+  right: 10px;
+  left: auto;
+}
+.effect7
+{
+    position:relative;
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.1) inset;
+}
+.effect7:before, .effect7:after
+{
+	content:"";
+    position:absolute; 
+    z-index:-1;
+    box-shadow:0 0 10px rgba(0,0,0,0.5);
+    top:0;
+    bottom:0;
+    left:5px;
+    right:5px;
+    border-radius:100px / 10px;
+} 
+.effect7:after
+{
+    right:10px; 
+    left:auto; 
+    transform:skew(8deg) rotate(3deg);
+}
+
+.effect8
+{
+    position:relative;
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.effect8:before, .effect8:after
+{
+	content:"";
+    position:absolute; 
+    z-index:-1;
+    box-shadow:0 0 20px rgba(0,0,0,0.8);
+    top:10px;
+    bottom:10px;
+    left:0;
+    right:0;
+    border-radius:100px / 10px;
+} 
+.effect8:after
+{
+    right:10px; 
+    left:auto; 
+    transform:skew(8deg) rotate(3deg);
+}
+.clear{
+    clear: both;
+    
+}
+
+
+.product-image-wrapper{
+	border:1px solid #F7F7F5;
+	overflow: hidden;
+	margin-bottom:30px;
+}
+
+.single-products {
+  position: relative;
+}
+
+.pub{
+    margin:0px;
+    margin-top:6px;
+    
+}
+
+.new, .sale {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.productinfo h2{
+	color: #0784be;
+	font-family: 'Roboto', sans-serif;
+	font-size: 100%;
+	font-weight: 700;
+}
+.product-overlay h2{
+	color: #c80604;
+	font-family: 'Roboto', sans-serif;
+	font-size: 100%;
+	font-weight: 700;
+}
+
+
+.productinfo p{
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #696763;
+}
+
+.product-overlay i{
+    display: none;
+    text-align: center;
+    
+}
+
+.productinfo{
+ position:relative;
+}
+
+.product-overlay {
+  background: rgba(255,255,255,0.2);
+  
+  top: 0;
+  display: none;
+  height: 0;
+  position: absolute;
+  transition: height 300ms ease 0s;
+  transition-duration: 0.3s;
+  
+  width: 100%;
+  display: block;
+ 
+}
+
+.single-products:hover .product-overlay {
+  display:block;
+  height:100%;
+  
+}
+
+.single-products:hover .product-overlay i {
+  display:block;
+  margin-top: 25%;
+   transition: height 500ms ease 0s;
+  transition-duration: 0.5s;
+}
+
+.single-products:hover .product-overlay i.vv {
+  margin-top: 25%;
+   
+}
+
+.single-products:hover .product-overlay i.mm {
+  margin-top: 25%;
+   
+}
+
+
+.product-overlay .overlay-content {
+  bottom: 0;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.product-overlay .add-to-cart {
+  background:#fff;
+  border: 0 none;
+  border-radius: 0;
+  color: #0784be;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+.product-overlay .add-to-cart:hover {
+  background:#fff;
+  color: #0784be;
+}
+
+.price {
+  font-size: 24px;
+  text-align: center;
+  color: #0784be;
+  font-weight: bold;
+}
+
+
+.product-overlay p{
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #212121;
+}
+
+a.nodecoration{
+    text-decoration: none;
+}
+.get{
+    background-color: #0784be;
+    color: #FFF;
+    margin: 5px;
+}

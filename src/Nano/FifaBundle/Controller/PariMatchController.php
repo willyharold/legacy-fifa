@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\PariMatch;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Parimatch controller.
  *
- * @Route("parimatch")
  */
 class PariMatchController extends Controller
 {
     /**
      * Lists all pariMatch entities.
      *
-     * @Route("/", name="parimatch_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class PariMatchController extends Controller
     /**
      * Creates a new pariMatch entity.
      *
-     * @Route("/new", name="parimatch_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class PariMatchController extends Controller
     /**
      * Finds and displays a pariMatch entity.
      *
-     * @Route("/{id}", name="parimatch_show")
-     * @Method("GET")
      */
     public function showAction(PariMatch $pariMatch)
     {
@@ -76,8 +68,6 @@ class PariMatchController extends Controller
     /**
      * Displays a form to edit an existing pariMatch entity.
      *
-     * @Route("/{id}/edit", name="parimatch_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, PariMatch $pariMatch)
     {
@@ -101,8 +91,6 @@ class PariMatchController extends Controller
     /**
      * Deletes a pariMatch entity.
      *
-     * @Route("/{id}", name="parimatch_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, PariMatch $pariMatch)
     {

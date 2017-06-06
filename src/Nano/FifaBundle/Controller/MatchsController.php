@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Matchs;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Match controller.
  *
- * @Route("matchs")
  */
 class MatchsController extends Controller
 {
     /**
      * Lists all match entities.
      *
-     * @Route("/", name="matchs_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class MatchsController extends Controller
     /**
      * Creates a new match entity.
      *
-     * @Route("/new", name="matchs_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class MatchsController extends Controller
     /**
      * Finds and displays a match entity.
      *
-     * @Route("/{id}", name="matchs_show")
-     * @Method("GET")
      */
     public function showAction(Matchs $match)
     {
@@ -76,8 +68,6 @@ class MatchsController extends Controller
     /**
      * Displays a form to edit an existing match entity.
      *
-     * @Route("/{id}/edit", name="matchs_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Matchs $match)
     {
@@ -101,8 +91,6 @@ class MatchsController extends Controller
     /**
      * Deletes a match entity.
      *
-     * @Route("/{id}", name="matchs_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Matchs $match)
     {

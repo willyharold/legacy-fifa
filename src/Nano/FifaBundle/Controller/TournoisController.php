@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Tournois;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Tournois controller.
  *
- * @Route("tournois")
  */
 class TournoisController extends Controller
 {
     /**
      * Lists all tournois entities.
      *
-     * @Route("/", name="tournois_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class TournoisController extends Controller
     /**
      * Creates a new tournois entity.
      *
-     * @Route("/new", name="tournois_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class TournoisController extends Controller
     /**
      * Finds and displays a tournois entity.
      *
-     * @Route("/{id}", name="tournois_show")
-     * @Method("GET")
      */
     public function showAction(Tournois $tournois)
     {
@@ -76,8 +68,6 @@ class TournoisController extends Controller
     /**
      * Displays a form to edit an existing tournois entity.
      *
-     * @Route("/{id}/edit", name="tournois_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Tournois $tournois)
     {
@@ -101,8 +91,6 @@ class TournoisController extends Controller
     /**
      * Deletes a tournois entity.
      *
-     * @Route("/{id}", name="tournois_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Tournois $tournois)
     {

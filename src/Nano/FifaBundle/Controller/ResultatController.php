@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Resultat;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Resultat controller.
  *
- * @Route("resultat")
  */
 class ResultatController extends Controller
 {
     /**
      * Lists all resultat entities.
      *
-     * @Route("/", name="resultat_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class ResultatController extends Controller
     /**
      * Creates a new resultat entity.
      *
-     * @Route("/new", name="resultat_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class ResultatController extends Controller
     /**
      * Finds and displays a resultat entity.
      *
-     * @Route("/{id}", name="resultat_show")
-     * @Method("GET")
      */
     public function showAction(Resultat $resultat)
     {
@@ -76,8 +68,6 @@ class ResultatController extends Controller
     /**
      * Displays a form to edit an existing resultat entity.
      *
-     * @Route("/{id}/edit", name="resultat_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Resultat $resultat)
     {
@@ -101,8 +91,6 @@ class ResultatController extends Controller
     /**
      * Deletes a resultat entity.
      *
-     * @Route("/{id}", name="resultat_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Resultat $resultat)
     {

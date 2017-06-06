@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Tchat;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Tchat controller.
  *
- * @Route("tchat")
  */
 class TchatController extends Controller
 {
     /**
      * Lists all tchat entities.
      *
-     * @Route("/", name="tchat_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class TchatController extends Controller
     /**
      * Creates a new tchat entity.
      *
-     * @Route("/new", name="tchat_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class TchatController extends Controller
     /**
      * Finds and displays a tchat entity.
      *
-     * @Route("/{id}", name="tchat_show")
-     * @Method("GET")
      */
     public function showAction(Tchat $tchat)
     {
@@ -76,8 +68,6 @@ class TchatController extends Controller
     /**
      * Displays a form to edit an existing tchat entity.
      *
-     * @Route("/{id}/edit", name="tchat_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Tchat $tchat)
     {
@@ -101,8 +91,6 @@ class TchatController extends Controller
     /**
      * Deletes a tchat entity.
      *
-     * @Route("/{id}", name="tchat_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Tchat $tchat)
     {

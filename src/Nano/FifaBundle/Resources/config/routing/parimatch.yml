@@ -1,0 +1,24 @@
+parimatch_index:
+    path:     /
+    defaults: { _controller: "NanoFifaBundle:PariMatch:index" }
+    methods:  GET
+
+parimatch_show:
+    path:     /{id}/show
+    defaults: { _controller: "NanoFifaBundle:PariMatch:show" }
+    methods:  GET
+
+parimatch_new:
+    path:     /new
+    defaults: { _controller: "NanoFifaBundle:PariMatch:new" }
+    methods:  [GET, POST]
+
+parimatch_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NanoFifaBundle:PariMatch:edit" }
+    methods:  [GET, POST]
+
+parimatch_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NanoFifaBundle:PariMatch:delete" }
+    methods:  DELETE

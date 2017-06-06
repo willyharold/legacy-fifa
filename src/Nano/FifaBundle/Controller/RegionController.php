@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Region;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Region controller.
  *
- * @Route("region")
  */
 class RegionController extends Controller
 {
     /**
      * Lists all region entities.
      *
-     * @Route("/", name="region_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class RegionController extends Controller
     /**
      * Creates a new region entity.
      *
-     * @Route("/new", name="region_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class RegionController extends Controller
     /**
      * Finds and displays a region entity.
      *
-     * @Route("/{id}", name="region_show")
-     * @Method("GET")
      */
     public function showAction(Region $region)
     {
@@ -76,8 +68,6 @@ class RegionController extends Controller
     /**
      * Displays a form to edit an existing region entity.
      *
-     * @Route("/{id}/edit", name="region_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Region $region)
     {
@@ -101,8 +91,6 @@ class RegionController extends Controller
     /**
      * Deletes a region entity.
      *
-     * @Route("/{id}", name="region_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Region $region)
     {

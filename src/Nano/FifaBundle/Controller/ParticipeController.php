@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Participe;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Participe controller.
  *
- * @Route("participe")
  */
 class ParticipeController extends Controller
 {
     /**
      * Lists all participe entities.
      *
-     * @Route("/", name="participe_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class ParticipeController extends Controller
     /**
      * Creates a new participe entity.
      *
-     * @Route("/new", name="participe_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class ParticipeController extends Controller
     /**
      * Finds and displays a participe entity.
      *
-     * @Route("/{id}", name="participe_show")
-     * @Method("GET")
      */
     public function showAction(Participe $participe)
     {
@@ -76,8 +68,6 @@ class ParticipeController extends Controller
     /**
      * Displays a form to edit an existing participe entity.
      *
-     * @Route("/{id}/edit", name="participe_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Participe $participe)
     {
@@ -101,8 +91,6 @@ class ParticipeController extends Controller
     /**
      * Deletes a participe entity.
      *
-     * @Route("/{id}", name="participe_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Participe $participe)
     {

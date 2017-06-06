@@ -1,0 +1,76 @@
+#src/Nano/FifaBundle/Ressources/config/routing.yml
+nanofifa_home:
+    path:     /
+    defaults: { _controller: NanoFifaBundle:Actualite:index }
+
+nano_fifa_discussion:
+        resource: "@NanoFifaBundle/Resources/config/routing/discussion.yml"
+        prefix:   /discussion
+
+nano_fifa_actualite:
+        resource: "@NanoFifaBundle/Resources/config/routing/actualite.yml"
+        prefix:   /actualite
+
+nano_fifa_charge:
+        resource: "@NanoFifaBundle/Resources/config/routing/charge.yml"
+        prefix:   /charge
+
+nano_fifa_historique_credit:
+        resource: "@NanoFifaBundle/Resources/config/routing/historique_credit.yml"
+        prefix:   /historique_credit
+
+nano_fifa_matchs:
+        resource: "@NanoFifaBundle/Resources/config/routing/matchs.yml"
+        prefix:   /matchs
+
+nano_fifa_message:
+        resource: "@NanoFifaBundle/Resources/config/routing/message.yml"
+        prefix:   /message
+
+nano_fifa_pays:
+        resource: "@NanoFifaBundle/Resources/config/routing/pays.yml"
+        prefix:   /pays
+
+nano_fifa_plainte:
+        resource: "@NanoFifaBundle/Resources/config/routing/plainte.yml"
+        prefix:   /plainte
+
+nano_fifa_point:
+        resource: "@NanoFifaBundle/Resources/config/routing/point.yml"
+        prefix:   /point
+
+nano_fifa_region:
+        resource: "@NanoFifaBundle/Resources/config/routing/region.yml"
+        prefix:   /region
+
+nano_fifa_reglement:
+        resource: "@NanoFifaBundle/Resources/config/routing/reglement.yml"
+        prefix:   /reglement
+
+nano_fifa_resultat:
+        resource: "@NanoFifaBundle/Resources/config/routing/resultat.yml"
+        prefix:   /resultat
+
+nano_fifa_suggestion:
+        resource: "@NanoFifaBundle/Resources/config/routing/suggestion.yml"
+        prefix:   /suggestion
+
+nano_fifa_tchat:
+        resource: "@NanoFifaBundle/Resources/config/routing/tchat.yml"
+        prefix:   /tchat
+
+nano_fifa_tournois:
+        resource: "@NanoFifaBundle/Resources/config/routing/tournois.yml"
+        prefix:   /tournois
+
+nano_fifa_users:
+        resource: "@NanoFifaBundle/Resources/config/routing/users.yml"
+        prefix:   /users
+
+nano_fifa_parimatch:
+        resource: "@NanoFifaBundle/Resources/config/routing/parimatch.yml"
+        prefix:   /parimatch
+
+nano_fifa_participe:
+        resource: "@NanoFifaBundle/Resources/config/routing/participe.yml"
+        prefix:   /participe

@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Point;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Point controller.
  *
- * @Route("point")
  */
 class PointController extends Controller
 {
     /**
      * Lists all point entities.
      *
-     * @Route("/", name="point_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class PointController extends Controller
     /**
      * Creates a new point entity.
      *
-     * @Route("/new", name="point_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class PointController extends Controller
     /**
      * Finds and displays a point entity.
      *
-     * @Route("/{id}", name="point_show")
-     * @Method("GET")
      */
     public function showAction(Point $point)
     {
@@ -76,8 +68,6 @@ class PointController extends Controller
     /**
      * Displays a form to edit an existing point entity.
      *
-     * @Route("/{id}/edit", name="point_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Point $point)
     {
@@ -101,8 +91,6 @@ class PointController extends Controller
     /**
      * Deletes a point entity.
      *
-     * @Route("/{id}", name="point_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Point $point)
     {

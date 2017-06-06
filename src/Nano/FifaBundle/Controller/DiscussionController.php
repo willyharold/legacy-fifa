@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Discussion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Discussion controller.
  *
- * @Route("discussion")
  */
 class DiscussionController extends Controller
 {
     /**
      * Lists all discussion entities.
      *
-     * @Route("/", name="discussion_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class DiscussionController extends Controller
     /**
      * Creates a new discussion entity.
      *
-     * @Route("/new", name="discussion_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class DiscussionController extends Controller
     /**
      * Finds and displays a discussion entity.
      *
-     * @Route("/{id}", name="discussion_show")
-     * @Method("GET")
      */
     public function showAction(Discussion $discussion)
     {
@@ -76,8 +68,6 @@ class DiscussionController extends Controller
     /**
      * Displays a form to edit an existing discussion entity.
      *
-     * @Route("/{id}/edit", name="discussion_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Discussion $discussion)
     {
@@ -101,8 +91,6 @@ class DiscussionController extends Controller
     /**
      * Deletes a discussion entity.
      *
-     * @Route("/{id}", name="discussion_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Discussion $discussion)
     {

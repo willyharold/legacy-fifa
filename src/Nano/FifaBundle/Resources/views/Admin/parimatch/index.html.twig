@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Parimatches list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Somme</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pariMatch in pariMatches %}
+            <tr>
+                <td><a href="{{ path('parimatch_show', { 'id': pariMatch.id }) }}">{{ pariMatch.id }}</a></td>
+                <td>{{ pariMatch.somme }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('parimatch_show', { 'id': pariMatch.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('parimatch_edit', { 'id': pariMatch.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('parimatch_new') }}">Create a new pariMatch</a>
+        </li>
+    </ul>
+{% endblock %}

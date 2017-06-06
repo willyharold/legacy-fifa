@@ -1,82 +1,10 @@
-nano_fifa_users:
-    resource: "@NanoFifaBundle/Controller/UsersController.php"
-    type:     annotation
-
-nano_fifa_tournois:
-    resource: "@NanoFifaBundle/Controller/TournoisController.php"
-    type:     annotation
-
-nano_fifa_tchat:
-    resource: "@NanoFifaBundle/Controller/TchatController.php"
-    type:     annotation
-
-nano_fifa_suggestion:
-    resource: "@NanoFifaBundle/Controller/SuggestionController.php"
-    type:     annotation
-
-nano_fifa_resultat:
-    resource: "@NanoFifaBundle/Controller/ResultatController.php"
-    type:     annotation
-
-nano_fifa_reglement:
-    resource: "@NanoFifaBundle/Controller/ReglementController.php"
-    type:     annotation
-
-nano_fifa_region:
-    resource: "@NanoFifaBundle/Controller/RegionController.php"
-    type:     annotation
-
-nano_fifa_point:
-    resource: "@NanoFifaBundle/Controller/PointController.php"
-    type:     annotation
-
-nano_fifa_plainte:
-    resource: "@NanoFifaBundle/Controller/PlainteController.php"
-    type:     annotation
-
-nano_fifa_pays:
-    resource: "@NanoFifaBundle/Controller/PaysController.php"
-    type:     annotation
-
-nano_fifa_participe:
-    resource: "@NanoFifaBundle/Controller/ParticipeController.php"
-    type:     annotation
-
-nano_fifa_pari_match:
-    resource: "@NanoFifaBundle/Controller/PariMatchController.php"
-    type:     annotation
-
-nano_fifa_message:
-    resource: "@NanoFifaBundle/Controller/MessageController.php"
-    type:     annotation
-
-nano_fifa_matchs:
-    resource: "@NanoFifaBundle/Controller/MatchsController.php"
-    type:     annotation
-
-nano_fifa_historique.credit:
-    resource: "@NanoFifaBundle/Controller/Historique_creditController.php"
-    type:     annotation
-
-nano_fifa_discussion:
-    resource: "@NanoFifaBundle/Controller/DiscussionController.php"
-    type:     annotation
-
-nano_fifa_charge:
-    resource: "@NanoFifaBundle/Controller/ChargeController.php"
-    type:     annotation
-
-nano_fifa_actualite:
-    resource: "@NanoFifaBundle/Controller/ActualiteController.php"
-    type:     annotation
-
 nanofifa:
     resource: "@NanoFifaBundle/Resources/config/routing.yml"
     prefix:   /
 
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+nanofifa_admin:
+    resource: "@NanoFifaBundle/Resources/config/admin_routing.yml"
+    prefix:   /admin
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

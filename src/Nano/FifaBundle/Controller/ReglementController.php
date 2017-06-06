@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Reglement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Reglement controller.
  *
- * @Route("reglement")
  */
 class ReglementController extends Controller
 {
     /**
      * Lists all reglement entities.
      *
-     * @Route("/", name="reglement_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class ReglementController extends Controller
     /**
      * Creates a new reglement entity.
      *
-     * @Route("/new", name="reglement_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class ReglementController extends Controller
     /**
      * Finds and displays a reglement entity.
      *
-     * @Route("/{id}", name="reglement_show")
-     * @Method("GET")
      */
     public function showAction(Reglement $reglement)
     {
@@ -76,8 +68,6 @@ class ReglementController extends Controller
     /**
      * Displays a form to edit an existing reglement entity.
      *
-     * @Route("/{id}/edit", name="reglement_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Reglement $reglement)
     {
@@ -101,8 +91,6 @@ class ReglementController extends Controller
     /**
      * Deletes a reglement entity.
      *
-     * @Route("/{id}", name="reglement_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Reglement $reglement)
     {

@@ -1,0 +1,24 @@
+suggestion_index:
+    path:     /
+    defaults: { _controller: "NanoFifaBundle:Suggestion:index" }
+    methods:  GET
+
+suggestion_show:
+    path:     /{id}/show
+    defaults: { _controller: "NanoFifaBundle:Suggestion:show" }
+    methods:  GET
+
+suggestion_new:
+    path:     /new
+    defaults: { _controller: "NanoFifaBundle:Suggestion:new" }
+    methods:  [GET, POST]
+
+suggestion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NanoFifaBundle:Suggestion:edit" }
+    methods:  [GET, POST]
+
+suggestion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NanoFifaBundle:Suggestion:delete" }
+    methods:  DELETE

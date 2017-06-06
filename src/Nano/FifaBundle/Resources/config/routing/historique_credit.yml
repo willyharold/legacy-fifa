@@ -1,0 +1,24 @@
+historique_credit_index:
+    path:     /
+    defaults: { _controller: "NanoFifaBundle:Historique_credit:index" }
+    methods:  GET
+
+historique_credit_show:
+    path:     /{id}/show
+    defaults: { _controller: "NanoFifaBundle:Historique_credit:show" }
+    methods:  GET
+
+historique_credit_new:
+    path:     /new
+    defaults: { _controller: "NanoFifaBundle:Historique_credit:new" }
+    methods:  [GET, POST]
+
+historique_credit_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NanoFifaBundle:Historique_credit:edit" }
+    methods:  [GET, POST]
+
+historique_credit_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NanoFifaBundle:Historique_credit:delete" }
+    methods:  DELETE

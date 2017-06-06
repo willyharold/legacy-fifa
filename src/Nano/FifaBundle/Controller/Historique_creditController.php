@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Historique_credit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Historique_credit controller.
  *
- * @Route("historique_credit")
  */
 class Historique_creditController extends Controller
 {
     /**
      * Lists all historique_credit entities.
      *
-     * @Route("/", name="historique_credit_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class Historique_creditController extends Controller
     /**
      * Creates a new historique_credit entity.
      *
-     * @Route("/new", name="historique_credit_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class Historique_creditController extends Controller
     /**
      * Finds and displays a historique_credit entity.
      *
-     * @Route("/{id}", name="historique_credit_show")
-     * @Method("GET")
      */
     public function showAction(Historique_credit $historique_credit)
     {
@@ -76,8 +68,6 @@ class Historique_creditController extends Controller
     /**
      * Displays a form to edit an existing historique_credit entity.
      *
-     * @Route("/{id}/edit", name="historique_credit_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Historique_credit $historique_credit)
     {
@@ -101,8 +91,6 @@ class Historique_creditController extends Controller
     /**
      * Deletes a historique_credit entity.
      *
-     * @Route("/{id}", name="historique_credit_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Historique_credit $historique_credit)
     {

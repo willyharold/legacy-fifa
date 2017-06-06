@@ -1,13 +1,10 @@
+nano_fifa_actualite:
+    resource: "@NanoFifaBundle/Resources/config/routing/actualite.yml"
+    prefix:   /actualite
+
 #src/Nano/FifaBundle/Ressources/config/routing.yml
 
 nanofifa_homepage:
     path:     /
-    defaults: { _controller: NanoFifaBundle:Default:index }
-
-
-
-nanofifa_view:
-    path:    /add/
-    defaults:    { _controller: NanoFifaBundle:Actualite:add }  
-
+    defaults: { _controller: NanoFifaBundle:Actualite:index }
 

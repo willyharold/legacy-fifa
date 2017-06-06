@@ -1,0 +1,240 @@
+﻿body {
+	padding-top: 10px;
+	background-color:rgba(0,0,0,0.05);
+	color:rgba(0,0,0,0.75);
+	font:message-box;
+	font-size:15px;
+        font-family: 'Roboto', sans-serif;
+  
+}
+
+[class*="col-"]{
+	
+	margin-top:5px;
+}
+footer {
+	line-height: 30px;
+}
+footer a
+{
+	text-decoration:none;
+	color:rgba(255,255,255,0.7);
+}
+footer a:hover
+{
+	text-decoration:none;
+	color:white;
+	transition-duration:0.5s;
+}
+
+/*------------ Couleur--------------*/
+
+/*------------ Couleur Noir--------------*/
+.CFonce
+{
+	color:rgba(0,0,0,0.75);
+}
+
+.CSecondaire
+{
+	color:rgba(0,0,0,0.6);
+}
+
+.CLegere
+{
+	color:rgba(0,0,0,0.3);
+}
+
+.CTresLegere
+{
+	color:rgba(0,0,0,0.15);
+}
+/*------------ Couleur Autre--------------*/
+
+.CBleu/*-------couleur bleu-----------*/
+{
+	background-color:#0784be;
+}
+.CTBleu/*-------couleur bleu-----------*/
+{
+	color:#0784be;
+}
+
+.CBlanche
+{
+	color:white;
+}
+.CBgray
+{
+	background-color: #FAFAFA;
+}
+
+.CTRouge
+{
+	color:#ff1744;
+}
+
+.CBlancheLegere
+{
+	color:rgba(255,255,255,0.7);
+}
+/*-----------------alignement-----------------*/
+
+.centre
+{
+	text-align:center;
+	
+}
+.textjust
+{
+	text-align:justify;
+        line-height: 1.8;
+        font-size: medium;
+	
+}
+
+.gauche
+{
+	text-align:left;
+}
+
+.droit
+{
+	text-align: right;
+}
+
+/*----------------------autre-----------------*/
+
+.footer-bottom
+{
+	background-color:#1795d0;
+}
+
+.logos
+{
+	background-image:url(images/home/kossaLogo.png);
+	background-size:cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.logo
+{
+	height:60px;
+	width:auto;
+	float:left;
+	margin-left:20%;
+	margin-bottom:10px;
+}
+
+.niveau1
+{
+	background-color:#FFF;
+	padding:5px;
+	margin-bottom:5px;
+}
+
+.contendeur
+{
+	background-color:#FFF;
+	margin-bottom:10px;
+	padding:10px 10px 0px 10px;
+}
+
+.niveau2
+{
+	background-image:url(../images/album/tof1/lady2.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+	height:70%;
+	margin-bottom:10px;
+}
+
+.pub1
+{
+	background-image: url(../images/pub/shipping.jpg);
+	background-repeat:no-repeat;
+	background-size:auto;
+	background-position:center;
+	width:100%;
+	height:50%;
+	margin-bottom:10px;
+}
+
+.nbrVue
+{
+	color:#ff1744;
+	font-size:20px;
+	font-weight:400;
+}
+
+.nomVideo
+{
+	font-size:20px;
+	font-weight:400;
+}
+
+.titreVideo
+{
+	
+}
+
+.partage
+{
+	display:block;
+	padding-bottom:15px;
+	padding-top:15px;	
+}
+
+.partage:hover
+{
+	background-color:#0FF;
+	transition-duration:0.7s;
+}
+
+.menu1 a
+{
+	display: inline-block;
+	text-decoration:none;
+	color:rgba(255,255,255,0.85);
+	padding:10px;
+}
+
+.menu1 a:hover
+{
+	border-bottom:2px solid rgba(255,255,255,0.85);
+	margin-bottom:-2px;
+}
+
+.margeIn
+{
+	padding:10px;
+}
+
+.img_frame
+{
+	width:130%;
+	height:auto;
+	margin-bottom: 5px;
+  	border: 1px solid #CCCCC6;
+}
+
+.photo
+{
+	  width:100px;
+	  height:100px;
+}
+
+.petiteVideo
+{
+	  width:150px;
+          height: 100px;
+}
+
+.photoArtist
+{
+	  width: 100%;
+	  height: auto;
+          
+	  border-radius: 4px;
+}

@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Pays;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Pay controller.
  *
- * @Route("pays")
  */
 class PaysController extends Controller
 {
     /**
      * Lists all pay entities.
      *
-     * @Route("/", name="pays_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class PaysController extends Controller
     /**
      * Creates a new pay entity.
      *
-     * @Route("/new", name="pays_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class PaysController extends Controller
     /**
      * Finds and displays a pay entity.
      *
-     * @Route("/{id}", name="pays_show")
-     * @Method("GET")
      */
     public function showAction(Pays $pay)
     {
@@ -76,8 +68,6 @@ class PaysController extends Controller
     /**
      * Displays a form to edit an existing pay entity.
      *
-     * @Route("/{id}/edit", name="pays_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Pays $pay)
     {
@@ -101,8 +91,6 @@ class PaysController extends Controller
     /**
      * Deletes a pay entity.
      *
-     * @Route("/{id}", name="pays_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Pays $pay)
     {

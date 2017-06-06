@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Users;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * User controller.
  *
- * @Route("users")
  */
 class UsersController extends Controller
 {
     /**
      * Lists all user entities.
      *
-     * @Route("/", name="users_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class UsersController extends Controller
     /**
      * Creates a new user entity.
      *
-     * @Route("/new", name="users_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class UsersController extends Controller
     /**
      * Finds and displays a user entity.
      *
-     * @Route("/{id}", name="users_show")
-     * @Method("GET")
      */
     public function showAction(Users $user)
     {
@@ -76,8 +68,6 @@ class UsersController extends Controller
     /**
      * Displays a form to edit an existing user entity.
      *
-     * @Route("/{id}/edit", name="users_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Users $user)
     {
@@ -101,8 +91,6 @@ class UsersController extends Controller
     /**
      * Deletes a user entity.
      *
-     * @Route("/{id}", name="users_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Users $user)
     {

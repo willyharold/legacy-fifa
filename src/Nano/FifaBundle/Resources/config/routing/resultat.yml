@@ -1,0 +1,24 @@
+resultat_index:
+    path:     /
+    defaults: { _controller: "NanoFifaBundle:Resultat:index" }
+    methods:  GET
+
+resultat_show:
+    path:     /{id}/show
+    defaults: { _controller: "NanoFifaBundle:Resultat:show" }
+    methods:  GET
+
+resultat_new:
+    path:     /new
+    defaults: { _controller: "NanoFifaBundle:Resultat:new" }
+    methods:  [GET, POST]
+
+resultat_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NanoFifaBundle:Resultat:edit" }
+    methods:  [GET, POST]
+
+resultat_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NanoFifaBundle:Resultat:delete" }
+    methods:  DELETE

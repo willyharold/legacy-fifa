@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Suggestion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Suggestion controller.
  *
- * @Route("suggestion")
  */
 class SuggestionController extends Controller
 {
     /**
      * Lists all suggestion entities.
      *
-     * @Route("/", name="suggestion_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class SuggestionController extends Controller
     /**
      * Creates a new suggestion entity.
      *
-     * @Route("/new", name="suggestion_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class SuggestionController extends Controller
     /**
      * Finds and displays a suggestion entity.
      *
-     * @Route("/{id}", name="suggestion_show")
-     * @Method("GET")
      */
     public function showAction(Suggestion $suggestion)
     {
@@ -76,8 +68,6 @@ class SuggestionController extends Controller
     /**
      * Displays a form to edit an existing suggestion entity.
      *
-     * @Route("/{id}/edit", name="suggestion_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Suggestion $suggestion)
     {
@@ -101,8 +91,6 @@ class SuggestionController extends Controller
     /**
      * Deletes a suggestion entity.
      *
-     * @Route("/{id}", name="suggestion_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Suggestion $suggestion)
     {

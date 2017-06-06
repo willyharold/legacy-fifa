@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Plainte;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Plainte controller.
  *
- * @Route("plainte")
  */
 class PlainteController extends Controller
 {
     /**
      * Lists all plainte entities.
      *
-     * @Route("/", name="plainte_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class PlainteController extends Controller
     /**
      * Creates a new plainte entity.
      *
-     * @Route("/new", name="plainte_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class PlainteController extends Controller
     /**
      * Finds and displays a plainte entity.
      *
-     * @Route("/{id}", name="plainte_show")
-     * @Method("GET")
      */
     public function showAction(Plainte $plainte)
     {
@@ -76,8 +68,6 @@ class PlainteController extends Controller
     /**
      * Displays a form to edit an existing plainte entity.
      *
-     * @Route("/{id}/edit", name="plainte_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Plainte $plainte)
     {
@@ -101,8 +91,6 @@ class PlainteController extends Controller
     /**
      * Deletes a plainte entity.
      *
-     * @Route("/{id}", name="plainte_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Plainte $plainte)
     {

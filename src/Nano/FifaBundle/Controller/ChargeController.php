@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Charge;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Charge controller.
  *
- * @Route("charge")
  */
 class ChargeController extends Controller
 {
     /**
      * Lists all charge entities.
      *
-     * @Route("/", name="charge_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class ChargeController extends Controller
     /**
      * Creates a new charge entity.
      *
-     * @Route("/new", name="charge_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class ChargeController extends Controller
     /**
      * Finds and displays a charge entity.
      *
-     * @Route("/{id}", name="charge_show")
-     * @Method("GET")
      */
     public function showAction(Charge $charge)
     {
@@ -76,8 +68,6 @@ class ChargeController extends Controller
     /**
      * Displays a form to edit an existing charge entity.
      *
-     * @Route("/{id}/edit", name="charge_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Charge $charge)
     {
@@ -101,8 +91,6 @@ class ChargeController extends Controller
     /**
      * Deletes a charge entity.
      *
-     * @Route("/{id}", name="charge_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Charge $charge)
     {

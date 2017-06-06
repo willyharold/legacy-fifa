@@ -4,21 +4,17 @@ namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Actualite;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Actualite controller.
  *
- * @Route("actualite")
  */
 class ActualiteController extends Controller
 {
     /**
      * Lists all actualite entities.
      *
-     * @Route("/", name="actualite_index")
-     * @Method("GET")
      */
     public function indexAction()
     {
@@ -34,8 +30,6 @@ class ActualiteController extends Controller
     /**
      * Creates a new actualite entity.
      *
-     * @Route("/new", name="actualite_new")
-     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -60,8 +54,6 @@ class ActualiteController extends Controller
     /**
      * Finds and displays a actualite entity.
      *
-     * @Route("/{id}", name="actualite_show")
-     * @Method("GET")
      */
     public function showAction(Actualite $actualite)
     {
@@ -76,8 +68,6 @@ class ActualiteController extends Controller
     /**
      * Displays a form to edit an existing actualite entity.
      *
-     * @Route("/{id}/edit", name="actualite_edit")
-     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Actualite $actualite)
     {
@@ -101,8 +91,6 @@ class ActualiteController extends Controller
     /**
      * Deletes a actualite entity.
      *
-     * @Route("/{id}", name="actualite_delete")
-     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Actualite $actualite)
     {
