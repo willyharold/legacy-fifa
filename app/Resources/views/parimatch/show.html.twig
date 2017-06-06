@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Parimatch</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pariMatch.id }}</td>
+            </tr>
+            <tr>
+                <th>Somme</th>
+                <td>{{ pariMatch.somme }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('parimatch_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('parimatch_edit', { 'id': pariMatch.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tournois list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Designation</th>
+                <th>Nbrequipe</th>
+                <th>Coordonnees</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Etat</th>
+                <th>Type</th>
+                <th>Type_tournois</th>
+                <th>Type_ligue</th>
+                <th>Niveau1</th>
+                <th>Niveau2</th>
+                <th>Niveau3</th>
+                <th>Niveau4</th>
+                <th>Niveau5</th>
+                <th>Etat_ligue</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tournois in tournois %}
+            <tr>
+                <td><a href="{{ path('tournois_show', { 'id': tournois.id }) }}">{{ tournois.id }}</a></td>
+                <td>{{ tournois.designation }}</td>
+                <td>{{ tournois.nbrEquipe }}</td>
+                <td>{{ tournois.coordonnees }}</td>
+                <td>{% if tournois.dateDebut %}{{ tournois.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if tournois.dateFin %}{{ tournois.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ tournois.etat }}</td>
+                <td>{{ tournois.type }}</td>
+                <td>{{ tournois.typetournois }}</td>
+                <td>{{ tournois.typeligue }}</td>
+                <td>{{ tournois.niveau1 }}</td>
+                <td>{{ tournois.niveau2 }}</td>
+                <td>{{ tournois.niveau3 }}</td>
+                <td>{{ tournois.niveau4 }}</td>
+                <td>{{ tournois.niveau5 }}</td>
+                <td>{{ tournois.etatligue }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tournois_show', { 'id': tournois.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tournois_edit', { 'id': tournois.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tournois_new') }}">Create a new tournois</a>
+        </li>
+    </ul>
+{% endblock %}

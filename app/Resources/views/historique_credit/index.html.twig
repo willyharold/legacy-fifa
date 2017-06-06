@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Historique_credits list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Somme</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Details</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for historique_credit in historique_credits %}
+            <tr>
+                <td><a href="{{ path('historique_credit_show', { 'id': historique_credit.id }) }}">{{ historique_credit.id }}</a></td>
+                <td>{{ historique_credit.somme }}</td>
+                <td>{{ historique_credit.type }}</td>
+                <td>{% if historique_credit.date %}{{ historique_credit.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ historique_credit.details }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('historique_credit_show', { 'id': historique_credit.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('historique_credit_edit', { 'id': historique_credit.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('historique_credit_new') }}">Create a new historique_credit</a>
+        </li>
+    </ul>
+{% endblock %}
