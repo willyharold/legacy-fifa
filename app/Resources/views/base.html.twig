@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>Administration Kossa</title>
+        <title>Administration Legend-Fifa</title>
         <link rel="shortcut icon" href="{{ asset('images/home/logo.ico') }}">
         <link href="{{ asset('css/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -56,8 +56,6 @@
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
 
-        {{ render_flash_alerts() }}
-
         <div class="wrapper">
 
 
@@ -92,13 +90,13 @@
                     <ul class="sidebar-menu menu">
                         <li class="header">MENU PRINCIPAL</li>
                         <li class="treeview" >
-                            <a href="{{ path('administration')}}">
+                            <a href="">
                                 <i class="fa fa-dashboard"></i> <span>Accueil</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
                         <li class="treeview" >
-                            <a href="{{ path('genre')}}">
+                            <a href="">
                                 <i class="fa fa-music"></i> <span> Genres Musicaux</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
@@ -106,7 +104,7 @@
                         
 
                         <li class="treeview" >
-                            <a href="{{ path('artiste')}}">
+                            <a href="">
                                 <i class="fa fa-star"></i> <span> Artistes</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
@@ -114,41 +112,41 @@
 
                         
                         <li class="treeview" >
-                            <a href="{{ path('genre_artiste')}}">
+                            <a href="">
                                 <i class="fa fa-genderless"></i> <span> Genre Artiste</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
                         
                         <li class="treeview" >
-                            <a href="{{ path('album')}}">
+                            <a href="">
                                 <i class="fa fa-circle-o"></i> <span> Albums</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
                         <li class="treeview" >
-                            <a href="{{ path('genre_album')}}">
+                            <a href="">
                                 <i <i class="fa fa-genderless"></i> <span> Genre Albums</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
 
                         <li class="treeview" >
-                            <a href="{{ path('morceau')}}">
+                            <a href="">
                                 <i class="fa fa-music"></i> <span> Morceaux</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
 
                         <li class="treeview" >
-                            <a href="{{ path('single')}}">
+                            <a href="">
                                 <i class="fa fa-file-sound-o"></i> <span> Singles</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
 
                         <li class="treeview" >
-                            <a href="{{ path('video')}}">
+                            <a href="">
                                 <i class="fa fa-video-camera"></i> <span> Vidéos</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
@@ -156,7 +154,7 @@
 
                         
                         <li class="treeview" >
-                            <a href="{{ path('utilisateur')}}">
+                            <a href="">
                                 <i class="fa fa-users"></i> <span> Utilisateurs</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
@@ -164,7 +162,7 @@
 
  
                         <li class="treeview" >
-                            <a href="{{ path('actualite')}}">
+                            <a href="">
                                 <i class="fa fa-newspaper-o"></i> <span> Actualités</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
@@ -172,35 +170,35 @@
 
 
                         <li class="treeview" >
-                            <a href="{{ path('baniere')}}">
+                            <a href="">
                                 <i class="fa fa-image"></i> <span> Banière</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
 
                         <li class="treeview" >
-                            <a href="{{ path('pub')}}">
+                            <a href="">
                                 <i class="fa fa-share"></i> <span> Publicités</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
 
                         <li class="treeview" >
-                            <a href="{{ path('livraison')}}">
+                            <a href="">
                                 <i class="fa fa-send"></i> <span> Livraisons</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
                         
                          <li class="treeview" >
-                            <a href="{{ path('concert')}}">
+                            <a href="">
                                 <i class="fa fa-sliders "></i> <span> Concert</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
                         
                         <li class="treeview" >
-                            <a href="{{ path('abonnement')}}">
+                            <a href="">
                                 <i class="fa fa-user-times "></i> <span> Abonnement</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
@@ -208,33 +206,33 @@
 
                         
                         <li class="treeview" >
-                            <a href="{{ path('pack')}}">
+                            <a href="">
                                 <i class="fa fa-shopping-cart "></i> <span> Pack</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
                         
                         <li class="treeview" >
-                            <a href="{{ path('pays')}}">
+                            <a href="">
                                 <i class="fa fa-compass"></i> <span> Pays</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
                         <li class="treeview" >
-                            <a href="{{ path('region')}}">
+                            <a href="">
                                 <i class="fa fa-reorder"></i> <span> Region</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
                         
                         <li class="treeview" >
-                            <a href="{{ path('ticket')}}">
+                            <a href="">
                                 <i class="fa fa-ticket"></i> <span> Ticket</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
                         </li>
                         <li class="treeview" >
-                            <a href="{{ path('type_concert')}}">
+                            <a href="">
                                 <i class="fa fa-shield"></i> <span> Type de concert</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                         
@@ -247,7 +245,7 @@
 
                         </li>
                         <li class="treeview" >
-                            <a href="{{ path('publication')}}">
+                            <a href="">
                                 <i class="fa fa-commenting"></i> <span> Publications Artistes</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 
