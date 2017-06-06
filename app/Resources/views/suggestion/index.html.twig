@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Suggestions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Contenu</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for suggestion in suggestions %}
+            <tr>
+                <td><a href="{{ path('suggestion_show', { 'id': suggestion.id }) }}">{{ suggestion.id }}</a></td>
+                <td>{{ suggestion.contenu }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('suggestion_show', { 'id': suggestion.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('suggestion_edit', { 'id': suggestion.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('suggestion_new') }}">Create a new suggestion</a>
+        </li>
+    </ul>
+{% endblock %}
