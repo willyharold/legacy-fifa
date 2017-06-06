@@ -23,7 +23,7 @@ class Actualite
 
     /**
 
-    * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Tournois", inversedBy="actualites")
+    * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Tournois", inversedBy="actualites")
 
     * @ORM\JoinColumn(nullable=true)
 
@@ -172,7 +172,7 @@ class Actualite
      *
      * @return Actualite
      */
-    public function setTournois(\nano\FifaBundle\Entity\Tournois $tournois = null)
+    public function setTournois(\Nano\FifaBundle\Entity\Tournois $tournois = null)
     {
         $this->tournois = $tournois;
 

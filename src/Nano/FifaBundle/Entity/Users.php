@@ -22,7 +22,7 @@ class Users
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\historique_credit", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\Historique_credit", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
     */
 
@@ -325,11 +325,11 @@ class Users
     /**
      * Set historiquecredit
      *
-     * @param \Nano\FifaBundle\Entity\historique_credit $historiquecredit
+     * @param \Nano\FifaBundle\Entity\Historique_credit $historiquecredit
      *
      * @return Users
      */
-    public function setHistoriquecredit(\Nano\FifaBundle\Entity\historique_credit $historiquecredit)
+    public function setHistoriquecredit(\Nano\FifaBundle\Entity\Historique_credit $historiquecredit)
     {
         $this->historiquecredit = $historiquecredit;
 
@@ -339,7 +339,7 @@ class Users
     /**
      * Get historiquecredit
      *
-     * @return \Nano\FifaBundle\Entity\historique_credit
+     * @return \Nano\FifaBundle\Entity\Historique_credit
      */
     public function getHistoriquecredit()
     {

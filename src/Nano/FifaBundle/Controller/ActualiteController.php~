@@ -1,0 +1,69 @@
+<?php
+
+// src/Nano/FifaBundle/Controller/ActualiteController.php
+
+
+namespace Nano\FifaBundle\Controller;
+
+
+use Nano\FifaBundle\Entity\Actualite;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
+
+class ActualiteController extends Controller
+
+{
+
+  public function addAction(Request $request)
+
+  {
+
+    // On crée un objet Actualite
+
+    $actualite = new Actualite();
+
+
+    // On crée le FormBuilder grâce au service form factory
+
+    $form = $this->createForm(ActualiteType::class, $actualite);
+
+
+    if ($form->handleRequest($request)->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($actualite);
+      $em->flush();
+ 
+      $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+ 
+      return $this->redirect($this->generateUrl('nano_fifa_view', array('id' => $advert->getId())));
+    }
+
+
+    // À partir du formBuilder, on génère le formulaire
+
+    $form = $formBuilder->getForm();
+
+
+    // On passe la méthode createView() du formulaire à la vue
+
+    // afin qu'elle puisse afficher le formulaire toute seule
+
+    return $this->render('NanoFifaBundle:Actualite:add.html.twig', array(
+
+      'form' => $form->createView(),
+
+    ));
+
+  }
+}

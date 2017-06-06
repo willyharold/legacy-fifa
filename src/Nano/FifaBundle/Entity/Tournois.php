@@ -31,7 +31,7 @@ class Tournois
 
     /**
 
-    * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Region", inversedBy="tournois")
+    * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Region", inversedBy="tournois")
 
     * @ORM\JoinColumn(nullable=true)
 
@@ -168,7 +168,7 @@ class Tournois
 
     /**
 
-    * @ORM\OneToOne(targetEntity="nano\FifaBundle\Entity\Tournois", mappedBy="tournois")
+    * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\Tournois", mappedBy="tournois")
 
     * @ORM\JoinColumn(nullable=true)
 
@@ -402,7 +402,7 @@ class Tournois
      *
      * @return Tournois
      */
-    public function setRegions(\nano\FifaBundle\Entity\Region $regions)
+    public function setRegions(\Nano\FifaBundle\Entity\Region $regions)
     {
         $this->regions = $regions;
 
