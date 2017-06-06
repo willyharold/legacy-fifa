@@ -3,6 +3,7 @@
 namespace Nano\FifaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Users
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="Nano\FifaBundle\Repository\UsersRepository")
  */
-class Users
+class Users extends BaseUser
 {
     /**
      * @var int
@@ -19,7 +20,7 @@ class Users
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\Historique_credit", cascade={"persist"})
