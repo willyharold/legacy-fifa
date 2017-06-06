@@ -21,7 +21,6 @@ class Users extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
     /**
      * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\Historique_credit", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
