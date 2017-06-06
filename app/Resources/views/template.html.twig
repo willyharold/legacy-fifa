@@ -1,0 +1,182 @@
+<! DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>KOSSA | enjoy</title>
+
+        <link href="{{asset('bootstrap/css/bootstrap.css')}}" rel="stylesheet">
+        <link href="{{asset('css/awesome/css/font-awesome.css')}}" rel="stylesheet">
+        <link href="{{asset('css/myKossa.css')}}" rel="stylesheet">
+        <link href="{{asset('css/main.css')}}" rel="stylesheet">
+        <link rel="shortcut icon" href="{{ asset('images/home/logo.ico') }}">
+
+    </head>
+    <body>
+        {{ render_flash_alerts() }}
+        <header class="CBleu CBlancheLegere container-fluid">
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-1">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <img class="logo img img-responsive" src="{{asset('images/home/camermusiclogo.png')}}" style="float:left">
+                        </div>
+                        <div class="col-lg-9 ">
+                            <h1 style="font-size:60px;margin: 0;">Kossa</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-7">
+                    <ul class=" menu1 centre list-inline">
+                        <li><a href="{{path('tickets')}}"><i class="fa fa-cc-discover"></i> Mes Tickets</a></li>
+                        <li><a href="{{path('favories')}}"><i class="fa fa-star-half"></i> Mes livraisons</a></li>
+                        <li><a href="{{path('favories')}}"><i class="fa fa-star-half"></i> Mes Favories</a></li>
+                        <li><a href="{{path('profil')}}"><i class="fa fa-gear"></i> Mon Profil</a></li>
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" href="#" class="deroul1">{{app.user.displayName}} <i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu">	
+                                <li class="dropdown-header">Limit abonnement : <span class="label label-danger">12 jan 2017</span></li>
+                                <li class="divider"></li>                                 
+                                <li><a href="{{path('nouvelAbonnement')}}" class="btn btn-social get"><i class="fa fa-plus-square"></i> Nouvel Abonnement</a></li>	
+                                <li class="divider"></li>
+
+                                {% if is_granted('ROLE_ARTIST') %}
+
+                                    <li><a href="#"><i class="fa fa-dashboard"></i>&emsp; Dashboard</a></li>									
+                                    <li class="divider"></li>
+
+                                {% endif %}
+                                {% if is_granted('ROLE_ADMIN') %}
+
+                                    <li><a href="{{path('administration')}}"><i class="fa fa-user-plus"></i>&emsp; Administration</a></li>									
+                                    <li class="divider"></li>
+
+                                {% endif %}
+                                <li><a href="{{path('fos_user_security_logout')}}"><i class="fa fa-power-off"></i> &emsp;Deconnexion</a></li>									
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" href="#"><i class="fa fa-flag"></i> Langues <i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu pull-right">	
+                                <li><a href="#"><strong> Fr </strong> Fancais</a></li>	
+                                <li class="divider"></li>
+                                <li><a href="#"><strong> En </strong> Englais</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12" style="padding-left:0;padding-right: 0;" >
+                    <nav class="navbar navbar-default " >
+                        <ul class="nav navbar-nav tex" style="margin-top:0px; margin-bottom:0px; padding-left: 30px;padding-right: 30px;">
+                            <li> <a href="{{path('user')}}"><i class="fa fa-home"></i> Accueil</a> </li>
+                            <li><a href="{{path('actualites')}}">Actualités</a></li>
+                            <li><a href="{{path('artistes')}}">Artistes</a></li>
+                            <li><a href="{{path('talent')}}">Jeunes talents</a></li>
+
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" href="#">Music Locale <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    {{ render(controller("NanotechKossaUserBundle:Genre:affiche_genre1")) }}
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" href="#">Music urbaine <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    {{ render(controller("NanotechKossaUserBundle:Genre:affiche_genre2")) }}
+                                </ul>
+                            </li>
+
+                            <li><a href="{{path('videos')}}">Vidéos</a></li>
+                            <li><a href="{{path('concerts')}}">Concerts</a></li>
+                            <li><a href="{{path('top10')}}">Top 10</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        {% block body %}{% endblock %}
+        <h3></h3>
+
+
+
+
+
+
+        <footer class="CBleu CBlancheLegere gauche">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <h3>KOSSA</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">A propos</a></li>
+                            <li><a href="#">Conditions d'utilisation</a></li>
+                            <li><a href="#">Règles de confidentialité</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-2">
+                        <h3>Artiste</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="http://127.0.0.1/kmervibes/index.php?rub=21">Liste des Artistes</a></li>	
+                            <li><a href="{{path('toppublication')}}">Dernières publications</a></li>
+                            <li><a href="{{path('topvideos')}}">Dernières Vidéos</a></li>
+                            <li><a href="{{path('toptelechargement')}}">Top Téléchargement</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-2">
+                        <h3>Music Local</h3>
+                        <ul class=" list-unstyled">
+                            {{ render(controller("NanotechKossaUserBundle:Genre:liste_genre1")) }}
+
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <h3>Music Urbaine</h3>
+                        <ul class=" list-unstyled">
+                            {{ render(controller("NanotechKossaUserBundle:Genre:liste_genre2")) }}
+
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <h3>Newsletter</h3>
+                        <p>Recevez les dernières news sur les albums dipsonible sur note site Inscrivez-vous à notre newsletter.</p>
+                        <form action="#" class="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Votre adresse mail" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-success"><i class="fa fa-envelope"></i> Mail</button>
+                                </span>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <p class="pull-left">Copyright © 2016 KOSSA . Tous droits reservés.</p>
+                        <p class="pull-right">KOSSA est un produit de  <span><a target="_blank" href="http://nanotechsolutions.cm">Nanotech Solutions</a></span></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="{{asset('bootstrap/js/jquery.js')}}"></script>
+    <script src="{{asset('bootstrap/js/bootstrap.js')}}"></script>
+
+</body>
+</html>
