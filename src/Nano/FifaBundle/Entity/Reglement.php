@@ -22,7 +22,7 @@ class Reglement
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="reglement")
+     * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Users", inversedBy="reglement")
      * @ORM\JoinColumn(nullable=false)
      */
     private $users;
@@ -40,11 +40,11 @@ class Reglement
     /**
      * Set users
      *
-     * @param \nano\FifaBundle\Entity\Users $users
+     * @param \Nano\FifaBundle\Entity\Users $users
      *
      * @return Reglement
      */
-    public function setUsers(\nano\FifaBundle\Entity\Users $users)
+    public function setUsers(\Nano\FifaBundle\Entity\Users $users)
     {
         $this->users = $users;
 
@@ -54,7 +54,7 @@ class Reglement
     /**
      * Get users
      *
-     * @return \nano\FifaBundle\Entity\Users
+     * @return \Nano\FifaBundle\Entity\Users
      */
     public function getUsers()
     {

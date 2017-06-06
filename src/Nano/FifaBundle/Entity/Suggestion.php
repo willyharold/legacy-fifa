@@ -23,7 +23,7 @@ class Suggestion
 
    /**
 
-    * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="suggestions")
+    * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Users", inversedBy="suggestions")
 
     * @ORM\JoinColumn(nullable=false)
 
@@ -49,11 +49,11 @@ class Suggestion
     /**
      * Set users
      *
-     * @param \nano\FifaBundle\Entity\Users $users
+     * @param \Nano\FifaBundle\Entity\Users $users
      *
      * @return Suggestion
      */
-    public function setUsers(\nano\FifaBundle\Entity\Users $users)
+    public function setUsers(\Nano\FifaBundle\Entity\Users $users)
     {
         $this->users = $users;
 
@@ -63,7 +63,7 @@ class Suggestion
     /**
      * Get users
      *
-     * @return \nano\FifaBundle\Entity\Users
+     * @return \Nano\FifaBundle\Entity\Users
      */
     public function getUsers()
     {

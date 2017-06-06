@@ -96,4 +96,35 @@ class Pays
     {
         return $this->regions;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->regions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add region
+     *
+     * @param \nano\FifaBundle\Entity\Region $region
+     *
+     * @return Pays
+     */
+    public function addRegion(\nano\FifaBundle\Entity\Region $region)
+    {
+        $this->regions[] = $region;
+
+        return $this;
+    }
+
+    /**
+     * Remove region
+     *
+     * @param \nano\FifaBundle\Entity\Region $region
+     */
+    public function removeRegion(\nano\FifaBundle\Entity\Region $region)
+    {
+        $this->regions->removeElement($region);
+    }
 }

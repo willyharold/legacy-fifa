@@ -37,7 +37,7 @@ class Tchat
 
     /**
 
-     * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="tchat")
+     * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Users", inversedBy="tchat")
 
      * @ORM\JoinColumn(nullable=false)
 
@@ -47,7 +47,7 @@ class Tchat
 
     /**
 
-     * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="tchat")
+     * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Users", inversedBy="tchat")
 
      * @ORM\JoinColumn(nullable=false)
 
@@ -116,11 +116,11 @@ class Tchat
     /**
      * Set usersExp
      *
-     * @param \nano\FifaBundle\Entity\Users $usersExp
+     * @param \Nano\FifaBundle\Entity\Users $usersExp
      *
      * @return Tchat
      */
-    public function setUsersExp(\nano\FifaBundle\Entity\Users $usersExp)
+    public function setUsersExp(\Nano\FifaBundle\Entity\Users $usersExp)
     {
         $this->users_exp = $usersExp;
 
@@ -130,7 +130,7 @@ class Tchat
     /**
      * Get usersExp
      *
-     * @return \nano\FifaBundle\Entity\Users
+     * @return \Nano\FifaBundle\Entity\Users
      */
     public function getUsersExp()
     {
@@ -140,11 +140,11 @@ class Tchat
     /**
      * Set usersRec
      *
-     * @param \nano\FifaBundle\Entity\Users $usersRec
+     * @param \Nano\FifaBundle\Entity\Users $usersRec
      *
      * @return Tchat
      */
-    public function setUsersRec(\nano\FifaBundle\Entity\Users $usersRec)
+    public function setUsersRec(\Nano\FifaBundle\Entity\Users $usersRec)
     {
         $this->users_rec = $usersRec;
 

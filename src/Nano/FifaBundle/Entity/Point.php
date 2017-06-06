@@ -23,7 +23,7 @@ class Point
 
    /**
 
-    * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="point_tournois")
+    * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Users", inversedBy="point_tournois")
 
     * @ORM\JoinColumn(nullable=false)
 
@@ -40,7 +40,7 @@ class Point
 
     /**
 
-     * @ORM\OneToOne(targetEntity="nano\FifaBundle\Entity\Tournois", inversedBy="point")
+     * @ORM\OneToOne(targetEntity="Nano\FifaBundle\Entity\Tournois", inversedBy="point")
 
      * @ORM\JoinColumn(nullable=false)
 
@@ -83,11 +83,11 @@ class Point
     /**
      * Set users
      *
-     * @param \nano\FifaBundle\Entity\Users $users
+     * @param \Nano\FifaBundle\Entity\Users $users
      *
      * @return Point
      */
-    public function setUsers(\nano\FifaBundle\Entity\Users $users)
+    public function setUsers(\Nano\FifaBundle\Entity\Users $users)
     {
         $this->users = $users;
 
@@ -97,7 +97,7 @@ class Point
     /**
      * Get users
      *
-     * @return \nano\FifaBundle\Entity\Users
+     * @return \Nano\FifaBundle\Entity\Users
      */
     public function getUsers()
     {
@@ -107,11 +107,11 @@ class Point
     /**
      * Set tournois
      *
-     * @param \nano\FifaBundle\Entity\Tournois $tournois
+     * @param \Nano\FifaBundle\Entity\Tournois $tournois
      *
      * @return Point
      */
-    public function setTournois(\nano\FifaBundle\Entity\Tournois $tournois)
+    public function setTournois(\Nano\FifaBundle\Entity\Tournois $tournois)
     {
         $this->tournois = $tournois;
 
@@ -121,7 +121,7 @@ class Point
     /**
      * Get tournois
      *
-     * @return \nano\FifaBundle\Entity\Tournois
+     * @return \Nano\FifaBundle\Entity\Tournois
      */
     public function getTournois()
     {
