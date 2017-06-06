@@ -23,7 +23,7 @@ class Pays
 
     /**
 
-    * @ORM\OneToMany(targetEntity="nano\FifaBundle\Entity\Region", mappedBy="pays")
+    * @ORM\OneToMany(targetEntity="Nano\FifaBundle\Entity\Region", mappedBy="pays")
     * @ORM\JoinColumn(nullable=false)
      * @var $regions []
 
@@ -76,11 +76,11 @@ class Pays
     /**
      * Set regions
      *
-     * @param \nano\FifaBundle\Entity\Region $regions
+     * @param \Nano\FifaBundle\Entity\Region $regions
      *
      * @return Pays
      */
-    public function setRegions(\nano\FifaBundle\Entity\Region $regions)
+    public function setRegions(\Nano\FifaBundle\Entity\Region $regions)
     {
         $this->regions = $regions;
 
@@ -90,7 +90,7 @@ class Pays
     /**
      * Get regions
      *
-     * @return \nano\FifaBundle\Entity\Region
+     * @return \Nano\FifaBundle\Entity\Region
      */
     public function getRegions()
     {
@@ -107,11 +107,11 @@ class Pays
     /**
      * Add region
      *
-     * @param \nano\FifaBundle\Entity\Region $region
+     * @param \Nano\FifaBundle\Entity\Region $region
      *
      * @return Pays
      */
-    public function addRegion(\nano\FifaBundle\Entity\Region $region)
+    public function addRegion(\Nano\FifaBundle\Entity\Region $region)
     {
         $this->regions[] = $region;
 
@@ -121,9 +121,9 @@ class Pays
     /**
      * Remove region
      *
-     * @param \nano\FifaBundle\Entity\Region $region
+     * @param \Nano\FifaBundle\Entity\Region $region
      */
-    public function removeRegion(\nano\FifaBundle\Entity\Region $region)
+    public function removeRegion(\Nano\FifaBundle\Entity\Region $region)
     {
         $this->regions->removeElement($region);
     }

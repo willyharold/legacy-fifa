@@ -23,7 +23,7 @@ class Plainte
 
     /**
 
-   * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="plaintes")
+   * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Users", inversedBy="plaintes")
 
    * @ORM\JoinColumn(nullable=false)
 
@@ -44,11 +44,11 @@ class Plainte
     /**
      * Set users
      *
-     * @param \nano\FifaBundle\Entity\Users $users
+     * @param \Nano\FifaBundle\Entity\Users $users
      *
      * @return Plainte
      */
-    public function setUsers(\nano\FifaBundle\Entity\Users $users)
+    public function setUsers(\Nano\FifaBundle\Entity\Users $users)
     {
         $this->users = $users;
 
@@ -58,7 +58,7 @@ class Plainte
     /**
      * Get users
      *
-     * @return \nano\FifaBundle\Entity\Users
+     * @return \Nano\FifaBundle\Entity\Users
      */
     public function getUsers()
     {

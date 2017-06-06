@@ -68,7 +68,7 @@ class Matchs
 
     /**
 
-     * @ORM\ManyToOne(targetEntity="nano\FifaBundle\Entity\Users", inversedBy="matchs_int")
+     * @ORM\ManyToOne(targetEntity="Nano\FifaBundle\Entity\Users", inversedBy="matchs_int")
 
      * @ORM\JoinColumn(nullable=false)
 
