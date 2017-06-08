@@ -96,7 +96,7 @@
 
                         </li>
                         <li class="treeview" >
-                            <a href="{{path('nano_fifa_discussion')}}">
+                            <a href="{{path('/admin/actualite')}}">
                                 <i class="fa fa-music"></i> <span> Actualite</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
 

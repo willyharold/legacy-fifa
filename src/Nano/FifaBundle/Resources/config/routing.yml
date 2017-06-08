@@ -2,6 +2,7 @@ nano_fifa_actualite:
     resource: "@NanoFifaBundle/Resources/config/routing/actualite.yml"
     prefix:   /actualite
 
+
 #src/Nano/FifaBundle/Ressources/config/routing.yml
 
 nanofifa_homepage:
