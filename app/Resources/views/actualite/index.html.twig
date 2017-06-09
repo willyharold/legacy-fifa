@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Actualites list</h1>
-
-    <table>
+    <h1 class="police-text" style="text-align: center;font-size: 40px;">Liste des actualitées</h1>
+    <div class="table-responsive" style="text-align: center;">
+    <table class="table table-hover">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Priorite</th>
-                <th>Etat</th>
-                <th>Contenu</th>
-                <th>Actions</th>
+            <tr style="background-color: #444; color: white;">
+                <th style="text-align: center !important;">Id</th>
+                <th style="text-align: center !important;">Titre</th>
+                <th style="text-align: center !important;">Priorite</th>
+                <th style="text-align: center !important;">Etat</th>
+                <th style="text-align: center !important;">Contenu</th>
+                <th style="text-align: center !important;">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,23 +23,15 @@
                 <td>{{ actualite.etat }}</td>
                 <td>{{ actualite.contenu }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('actualite_show', { 'id': actualite.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('actualite_edit', { 'id': actualite.id }) }}">edit</a>
-                        </li>
-                    </ul>
+
+                    <a  class="btn btn-info" href="{{ path('actualite_show', { 'id': actualite.id }) }}">Détail</a>
+
+                    <a class="btn btn-success" href="{{ path('actualite_edit', { 'id': actualite.id }) }}">Modifier</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('actualite_new') }}">Create a new actualite</a>
-        </li>
-    </ul>
+        <a class="btn btn-primary btn-md" href="{{ path('actualite_new') }}">Nouvelle actualitée</a>
+    </div>
 {% endblock %}
