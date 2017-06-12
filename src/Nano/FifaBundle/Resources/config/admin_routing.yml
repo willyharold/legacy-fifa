@@ -1,7 +1,7 @@
 #src/Nano/FifaBundle/Ressources/config/routing.yml
 nanofifa_home:
     path:     /
-    defaults: { _controller: NanoFifaBundle:Actualite:index }
+    defaults: { _controller: "NanoFifaBundle:Actualite:index"}
 
 nano_fifa_discussion:
         resource: "@NanoFifaBundle/Resources/config/routing/discussion.yml"

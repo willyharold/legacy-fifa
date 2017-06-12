@@ -13,7 +13,11 @@ class ActualiteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('titre')->add('priorite')->add('etat')->add('contenu')->add('tournois');
+        $builder->add('titre')
+                ->add('priorite')
+                ->add('etat')
+                ->add('contenu')
+                ->add('tournois');
     }
     
     /**

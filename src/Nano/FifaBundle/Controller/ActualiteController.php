@@ -16,14 +16,21 @@ class ActualiteController extends Controller
      * Lists all actualite entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $actualites = $em->getRepository('NanoFifaBundle:Actualite')->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $actualites,
+            $request->query->getInt('page',1),
+            $request->query->getInt('limit',10)
 
+        );
         return $this->render('actualite/index.html.twig', array(
-            'actualites' => $actualites,
+            'actualites' => $pagination,
+            'pagination' => $pagination,
         ));
     }
 

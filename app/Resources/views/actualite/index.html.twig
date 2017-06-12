@@ -32,6 +32,11 @@
         {% endfor %}
         </tbody>
     </table>
+        <div class="navigation text-center">
+            {{ knp_pagination_render(actualites) }}
+        </div>
         <a class="btn btn-primary btn-md" href="{{ path('actualite_new') }}">Nouvelle actualitée</a>
     </div>
+    {# total items count #}
+
 {% endblock %}
