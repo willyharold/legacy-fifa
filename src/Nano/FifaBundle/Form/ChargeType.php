@@ -22,7 +22,9 @@ class ChargeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Nano\FifaBundle\Entity\Charge'
+            'data_class' => 'Nano\FifaBundle\Entity\Charge',
+            'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
     }
 
@@ -33,6 +35,7 @@ class ChargeType extends AbstractType
     {
         return 'nano_fifabundle_charge';
     }
+
 
 
 }

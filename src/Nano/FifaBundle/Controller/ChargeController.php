@@ -3,8 +3,12 @@
 namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Charge;
+use Nano\FifaBundle\Form\ChargeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
  * Charge controller.
@@ -13,112 +17,113 @@ use Symfony\Component\HttpFoundation\Request;
 class ChargeController extends Controller
 {
     /**
-     * Lists all charge entities.
-     *
+     * @Rest\View()
+     * @Rest\Get("/")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
-
-        $charges = $em->getRepository('NanoFifaBundle:Charge')->findAll();
-
-        return $this->render('charge/index.html.twig', array(
-            'charges' => $charges,
-        ));
+        $entities = $em->getRepository('NanoFifaBundle:Charge')->findAll();
+        return $entities;
     }
 
     /**
-     * Creates a new charge entity.
-     *
+     * @Rest\View()
+     * @Rest\Get("/{id}")
      */
-    public function newAction(Request $request)
-    {
-        $charge = new Charge();
-        $form = $this->createForm('Nano\FifaBundle\Form\ChargeType', $charge);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($charge);
-            $em->flush();
-
-            return $this->redirectToRoute('charge_show', array('id' => $charge->getId()));
+    public function findAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Charge')->find($request->get('id'));
+        if (empty($entity)) {
+            $reponse = new JsonResponse(array('message' => "contenu introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->render('charge/new.html.twig', array(
-            'charge' => $charge,
-            'form' => $form->createView(),
-        ));
+        return $entity;
     }
 
     /**
-     * Finds and displays a charge entity.
-     *
+     * @Rest\View(statusCode=Response::HTTP_CREATED)
+     * @Rest\Post("/create")
      */
-    public function showAction(Charge $charge)
-    {
-        $deleteForm = $this->createDeleteForm($charge);
+    public function createAction(Request $request) {
+        $entity = new Charge();
+        $form = $this->createForm(ChargeType::class, $entity);
 
-        return $this->render('charge/show.html.twig', array(
-            'charge' => $charge,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+        $form->submit($request->request->all()); // Validation des données
 
-    /**
-     * Displays a form to edit an existing charge entity.
-     *
-     */
-    public function editAction(Request $request, Charge $charge)
-    {
-        $deleteForm = $this->createDeleteForm($charge);
-        $editForm = $this->createForm('Nano\FifaBundle\Form\ChargeType', $charge);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('charge_edit', array('id' => $charge->getId()));
+        if ($form->isValid()) {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($entity);
+                $em->flush();
+                return $entity;
+            } catch (\Doctrine\DBAL\Exception\NotNullConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects ou sont vides"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        } else {
+            $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->render('charge/edit.html.twig', array(
-            'charge' => $charge,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**
-     * Deletes a charge entity.
-     *
+     * @Rest\View()
+     * @Rest\Put("/update/{id}")
      */
-    public function deleteAction(Request $request, Charge $charge)
-    {
-        $form = $this->createDeleteForm($charge);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($charge);
-            $em->flush();
+    public function updateAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Charge')->find($request->get('id'));
+        if (empty($entity)) {
+            $reponse = new JsonResponse(array('message' => "contenu introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->redirectToRoute('charge_index');
+        $form = $this->createForm(ChargeType::class, $entity);
+        $form->submit($request->request->all(), true); // Validation des données
+        if ($form->isValid()) {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->merge($entity);
+                $em->flush();
+                return $entity;
+            } catch (\Doctrine\DBAL\Exception\NotNullConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects ou sont vides"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        } else {
+            $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
+        }
     }
 
     /**
-     * Creates a form to delete a charge entity.
-     *
-     * @param Charge $charge The charge entity
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+     * @Rest\Delete("/delete/{id}")
      */
-    private function createDeleteForm(Charge $charge)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('charge_delete', array('id' => $charge->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+    public function removeAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Charge')
+            ->find($request->get('id'));
+
+        if ($entity) {
+            try {
+                $em->remove($entity);
+                $em->flush();
+            } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "ce contenu est utilisé ailleurs"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        }else{
+            $reponse = new JsonResponse(array('message' => "ce contenu est introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
+        }
     }
+
 }
