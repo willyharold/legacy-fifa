@@ -33,7 +33,7 @@ class UsersController extends Controller
      */
     public function newAction(Request $request)
     {
-        $user = new User();
+        $user = new Users();
         $form = $this->createForm('Nano\FifaBundle\Form\UsersType', $user);
         $form->handleRequest($request);
 

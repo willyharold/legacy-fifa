@@ -1,10 +1,19 @@
-nanofifa:
-    resource: "@NanoFifaBundle/Resources/config/routing.yml"
-    prefix:   /
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
 
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+
+#les routes de la page d'aministration
 nanofifa_admin:
     resource: "@NanoFifaBundle/Resources/config/admin_routing.yml"
-    prefix:   /admin
+    prefix:   /api/admin
 
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+#les routes de la page du simple user
+nanofifa_user:
+    resource: "@NanoFifaBundle/Resources/config/user_routing.yml"
+    prefix:   /api
+
+
