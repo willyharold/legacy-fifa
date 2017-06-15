@@ -2,9 +2,13 @@
 
 namespace Nano\FifaBundle\Controller;
 
-use Nano\FifaBundle\Entity\Tournois;
+use Nano\FifaBundle\Entity\Charge;
+use Nano\FifaBundle\Form\ChargeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
  * Tournois controller.
@@ -13,8 +17,8 @@ use Symfony\Component\HttpFoundation\Request;
 class TournoisController extends Controller
 {
     /**
-     * Lists all tournois entities.
-     *
+     * @Rest\View()
+     * @Rest\Get("/")
      */
     public function indexAction()
     {
@@ -22,9 +26,7 @@ class TournoisController extends Controller
 
         $tournois = $em->getRepository('NanoFifaBundle:Tournois')->findAll();
 
-        return $this->render('tournois/index.html.twig', array(
-            'tournois' => $tournois,
-        ));
+        return $tournois;
     }
 
     /**
