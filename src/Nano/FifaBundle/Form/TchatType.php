@@ -22,7 +22,9 @@ class TchatType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Nano\FifaBundle\Entity\Tchat'
+            'data_class' => 'Nano\FifaBundle\Entity\Tchat',
+            'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
     }
 

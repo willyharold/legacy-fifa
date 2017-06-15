@@ -22,7 +22,9 @@ class ReglementType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Nano\FifaBundle\Entity\Reglement'
+            'data_class' => 'Nano\FifaBundle\Entity\Reglement',
+             'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
     }
 
