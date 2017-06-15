@@ -3,8 +3,12 @@
 namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Region;
+use Nano\FifaBundle\Form\RegionType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
  * Region controller.
@@ -13,112 +17,113 @@ use Symfony\Component\HttpFoundation\Request;
 class RegionController extends Controller
 {
     /**
-     * Lists all region entities.
-     *
+     * @Rest\View()
+     * @Rest\Get("/")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
-
-        $regions = $em->getRepository('NanoFifaBundle:Region')->findAll();
-
-        return $this->render('region/index.html.twig', array(
-            'regions' => $regions,
-        ));
+        $entities = $em->getRepository('NanoFifaBundle:Region')->findAll();
+        return $entities;
     }
 
     /**
-     * Creates a new region entity.
-     *
+     * @Rest\View()
+     * @Rest\Get("/{id}")
      */
-    public function newAction(Request $request)
-    {
-        $region = new Region();
-        $form = $this->createForm('Nano\FifaBundle\Form\RegionType', $region);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($region);
-            $em->flush();
-
-            return $this->redirectToRoute('region_show', array('id' => $region->getId()));
+    public function findAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Region')->find($request->get('id'));
+        if (empty($entity)) {
+            $reponse = new JsonResponse(array('message' => "contenu introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->render('region/new.html.twig', array(
-            'region' => $region,
-            'form' => $form->createView(),
-        ));
+        return $entity;
     }
 
     /**
-     * Finds and displays a region entity.
-     *
+     * @Rest\View(statusCode=Response::HTTP_CREATED)
+     * @Rest\Post("/create")
      */
-    public function showAction(Region $region)
-    {
-        $deleteForm = $this->createDeleteForm($region);
+    public function createAction(Request $request) {
+        $entity = new Region();
+        $form = $this->createForm(RegionType::class, $entity);
 
-        return $this->render('region/show.html.twig', array(
-            'region' => $region,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+        $form->submit($request->request->all()); // Validation des données
 
-    /**
-     * Displays a form to edit an existing region entity.
-     *
-     */
-    public function editAction(Request $request, Region $region)
-    {
-        $deleteForm = $this->createDeleteForm($region);
-        $editForm = $this->createForm('Nano\FifaBundle\Form\RegionType', $region);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('region_edit', array('id' => $region->getId()));
+        if ($form->isValid()) {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($entity);
+                $em->flush();
+                return $entity;
+            } catch (\Doctrine\DBAL\Exception\NotNullConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects ou sont vides"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        } else {
+            $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->render('region/edit.html.twig', array(
-            'region' => $region,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**
-     * Deletes a region entity.
-     *
+     * @Rest\View()
+     * @Rest\Put("/update/{id}")
      */
-    public function deleteAction(Request $request, Region $region)
-    {
-        $form = $this->createDeleteForm($region);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($region);
-            $em->flush();
+    public function updateAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Region')->find($request->get('id'));
+        if (empty($entity)) {
+            $reponse = new JsonResponse(array('message' => "contenu introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->redirectToRoute('region_index');
+        $form = $this->createForm(RegionType::class, $entity);
+        $form->submit($request->request->all(), true); // Validation des données
+        if ($form->isValid()) {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->merge($entity);
+                $em->flush();
+                return $entity;
+            } catch (\Doctrine\DBAL\Exception\NotNullConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects ou sont vides"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        } else {
+            $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
+        }
     }
 
     /**
-     * Creates a form to delete a region entity.
-     *
-     * @param Region $region The region entity
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+     * @Rest\Delete("/delete/{id}")
      */
-    private function createDeleteForm(Region $region)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('region_delete', array('id' => $region->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+    public function removeAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Region')
+            ->find($request->get('id'));
+
+        if ($entity) {
+            try {
+                $em->remove($entity);
+                $em->flush();
+            } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "ce contenu est utilisé ailleurs"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        }else{
+            $reponse = new JsonResponse(array('message' => "ce contenu est introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
+        }
     }
+
 }

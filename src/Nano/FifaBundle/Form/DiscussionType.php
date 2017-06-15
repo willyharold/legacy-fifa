@@ -22,7 +22,9 @@ class DiscussionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Nano\FifaBundle\Entity\Discussion'
+            'data_class' => 'Nano\FifaBundle\Entity\Discussion',
+	    'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
     }
 

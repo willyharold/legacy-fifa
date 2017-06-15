@@ -3,8 +3,12 @@
 namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Discussion;
+use Nano\FifaBundle\Form\DiscussionType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
  * Discussion controller.
@@ -13,112 +17,113 @@ use Symfony\Component\HttpFoundation\Request;
 class DiscussionController extends Controller
 {
     /**
-     * Lists all discussion entities.
-     *
+     * @Rest\View()
+     * @Rest\Get("/")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
-
-        $discussions = $em->getRepository('NanoFifaBundle:Discussion')->findAll();
-
-        return $this->render('discussion/index.html.twig', array(
-            'discussions' => $discussions,
-        ));
+        $entities = $em->getRepository('NanoFifaBundle:Discussion')->findAll();
+        return $entities;
     }
 
     /**
-     * Creates a new discussion entity.
-     *
+     * @Rest\View()
+     * @Rest\Get("/{id}")
      */
-    public function newAction(Request $request)
-    {
-        $discussion = new Discussion();
-        $form = $this->createForm('Nano\FifaBundle\Form\DiscussionType', $discussion);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($discussion);
-            $em->flush();
-
-            return $this->redirectToRoute('discussion_show', array('id' => $discussion->getId()));
+    public function findAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Discussion')->find($request->get('id'));
+        if (empty($entity)) {
+            $reponse = new JsonResponse(array('message' => "contenu introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->render('discussion/new.html.twig', array(
-            'discussion' => $discussion,
-            'form' => $form->createView(),
-        ));
+        return $entity;
     }
 
     /**
-     * Finds and displays a discussion entity.
-     *
+     * @Rest\View(statusCode=Response::HTTP_CREATED)
+     * @Rest\Post("/create")
      */
-    public function showAction(Discussion $discussion)
-    {
-        $deleteForm = $this->createDeleteForm($discussion);
+    public function createAction(Request $request) {
+        $entity = new Discussion();
+        $form = $this->createForm(DiscussionType::class, $entity);
 
-        return $this->render('discussion/show.html.twig', array(
-            'discussion' => $discussion,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+        $form->submit($request->request->all()); // Validation des données
 
-    /**
-     * Displays a form to edit an existing discussion entity.
-     *
-     */
-    public function editAction(Request $request, Discussion $discussion)
-    {
-        $deleteForm = $this->createDeleteForm($discussion);
-        $editForm = $this->createForm('Nano\FifaBundle\Form\DiscussionType', $discussion);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('discussion_edit', array('id' => $discussion->getId()));
+        if ($form->isValid()) {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($entity);
+                $em->flush();
+                return $entity;
+            } catch (\Doctrine\DBAL\Exception\NotNullConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects ou sont vides"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        } else {
+            $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->render('discussion/edit.html.twig', array(
-            'discussion' => $discussion,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**
-     * Deletes a discussion entity.
-     *
+     * @Rest\View()
+     * @Rest\Put("/update/{id}")
      */
-    public function deleteAction(Request $request, Discussion $discussion)
-    {
-        $form = $this->createDeleteForm($discussion);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($discussion);
-            $em->flush();
+    public function updateAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Discussion')->find($request->get('id'));
+        if (empty($entity)) {
+            $reponse = new JsonResponse(array('message' => "contenu introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->redirectToRoute('discussion_index');
+        $form = $this->createForm(DiscussionType::class, $entity);
+        $form->submit($request->request->all(), true); // Validation des données
+        if ($form->isValid()) {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->merge($entity);
+                $em->flush();
+                return $entity;
+            } catch (\Doctrine\DBAL\Exception\NotNullConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects ou sont vides"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        } else {
+            $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
+        }
     }
 
     /**
-     * Creates a form to delete a discussion entity.
-     *
-     * @param Discussion $discussion The discussion entity
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+     * @Rest\Delete("/delete/{id}")
      */
-    private function createDeleteForm(Discussion $discussion)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('discussion_delete', array('id' => $discussion->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+    public function removeAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Discussion')
+            ->find($request->get('id'));
+
+        if ($entity) {
+            try {
+                $em->remove($entity);
+                $em->flush();
+            } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "ce contenu est utilisé ailleurs"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        }else{
+            $reponse = new JsonResponse(array('message' => "ce contenu est introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
+        }
     }
+
 }

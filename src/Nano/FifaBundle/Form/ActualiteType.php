@@ -13,11 +13,7 @@ class ActualiteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('titre')
-                ->add('priorite')
-                ->add('etat')
-                ->add('contenu')
-                ->add('tournois');
+        $builder->add('titre')->add('priorite')->add('etat')->add('contenu')->add('tournois');
     }
     
     /**
@@ -26,7 +22,9 @@ class ActualiteType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Nano\FifaBundle\Entity\Actualite'
+            'data_class' => 'Nano\FifaBundle\Entity\Actualite',
+            'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
     }
 
@@ -37,6 +35,7 @@ class ActualiteType extends AbstractType
     {
         return 'nano_fifabundle_actualite';
     }
+
 
 
 }

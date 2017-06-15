@@ -22,7 +22,9 @@ class MatchsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Nano\FifaBundle\Entity\Matchs'
+            'data_class' => 'Nano\FifaBundle\Entity\Matchs',
+            'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
     }
 

@@ -3,8 +3,12 @@
 namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Message;
+use Nano\FifaBundle\Form\MessageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
  * Message controller.
@@ -13,112 +17,113 @@ use Symfony\Component\HttpFoundation\Request;
 class MessageController extends Controller
 {
     /**
-     * Lists all message entities.
-     *
+     * @Rest\View()
+     * @Rest\Get("/")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
-
-        $messages = $em->getRepository('NanoFifaBundle:Message')->findAll();
-
-        return $this->render('message/index.html.twig', array(
-            'messages' => $messages,
-        ));
+        $entities = $em->getRepository('NanoFifaBundle:Message')->findAll();
+        return $entities;
     }
 
     /**
-     * Creates a new message entity.
-     *
+     * @Rest\View()
+     * @Rest\Get("/{id}")
      */
-    public function newAction(Request $request)
-    {
-        $message = new Message();
-        $form = $this->createForm('Nano\FifaBundle\Form\MessageType', $message);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($message);
-            $em->flush();
-
-            return $this->redirectToRoute('message_show', array('id' => $message->getId()));
+    public function findAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Message')->find($request->get('id'));
+        if (empty($entity)) {
+            $reponse = new JsonResponse(array('message' => "contenu introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->render('message/new.html.twig', array(
-            'message' => $message,
-            'form' => $form->createView(),
-        ));
+        return $entity;
     }
 
     /**
-     * Finds and displays a message entity.
-     *
+     * @Rest\View(statusCode=Response::HTTP_CREATED)
+     * @Rest\Post("/create")
      */
-    public function showAction(Message $message)
-    {
-        $deleteForm = $this->createDeleteForm($message);
+    public function createAction(Request $request) {
+        $entity = new Message();
+        $form = $this->createForm(MessageType::class, $entity);
 
-        return $this->render('message/show.html.twig', array(
-            'message' => $message,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+        $form->submit($request->request->all()); // Validation des données
 
-    /**
-     * Displays a form to edit an existing message entity.
-     *
-     */
-    public function editAction(Request $request, Message $message)
-    {
-        $deleteForm = $this->createDeleteForm($message);
-        $editForm = $this->createForm('Nano\FifaBundle\Form\MessageType', $message);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('message_edit', array('id' => $message->getId()));
+        if ($form->isValid()) {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($entity);
+                $em->flush();
+                return $entity;
+            } catch (\Doctrine\DBAL\Exception\NotNullConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects ou sont vides"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        } else {
+            $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->render('message/edit.html.twig', array(
-            'message' => $message,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**
-     * Deletes a message entity.
-     *
+     * @Rest\View()
+     * @Rest\Put("/update/{id}")
      */
-    public function deleteAction(Request $request, Message $message)
-    {
-        $form = $this->createDeleteForm($message);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($message);
-            $em->flush();
+    public function updateAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Message')->find($request->get('id'));
+        if (empty($entity)) {
+            $reponse = new JsonResponse(array('message' => "contenu introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->redirectToRoute('message_index');
+        $form = $this->createForm(MessageType::class, $entity);
+        $form->submit($request->request->all(), true); // Validation des données
+        if ($form->isValid()) {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->merge($entity);
+                $em->flush();
+                return $entity;
+            } catch (\Doctrine\DBAL\Exception\NotNullConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects ou sont vides"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        } else {
+            $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
+        }
     }
 
     /**
-     * Creates a form to delete a message entity.
-     *
-     * @param Message $message The message entity
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+     * @Rest\Delete("/delete/{id}")
      */
-    private function createDeleteForm(Message $message)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('message_delete', array('id' => $message->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+    public function removeAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Message')
+            ->find($request->get('id'));
+
+        if ($entity) {
+            try {
+                $em->remove($entity);
+                $em->flush();
+            } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "ce contenu est utilisé ailleurs"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        }else{
+            $reponse = new JsonResponse(array('message' => "ce contenu est introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
+        }
     }
+
 }

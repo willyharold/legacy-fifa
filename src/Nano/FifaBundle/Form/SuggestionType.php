@@ -22,7 +22,9 @@ class SuggestionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Nano\FifaBundle\Entity\Suggestion'
+            'data_class' => 'Nano\FifaBundle\Entity\Suggestion',
+            'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
     }
 

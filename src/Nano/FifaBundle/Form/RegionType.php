@@ -22,7 +22,9 @@ class RegionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Nano\FifaBundle\Entity\Region'
+            'data_class' => 'Nano\FifaBundle\Entity\Region',
+             'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
     }
 

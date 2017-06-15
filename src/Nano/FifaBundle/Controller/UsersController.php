@@ -3,122 +3,127 @@
 namespace Nano\FifaBundle\Controller;
 
 use Nano\FifaBundle\Entity\Users;
+use Nano\FifaBundle\Form\UsersType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
- * User controller.
+ * Users controller.
  *
  */
 class UsersController extends Controller
 {
     /**
-     * Lists all user entities.
-     *
+     * @Rest\View()
+     * @Rest\Get("/")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
-
-        $users = $em->getRepository('NanoFifaBundle:Users')->findAll();
-
-        return $this->render('users/index.html.twig', array(
-            'users' => $users,
-        ));
+        $entities = $em->getRepository('NanoFifaBundle:Users')->findAll();
+        return $entities;
     }
 
     /**
-     * Creates a new user entity.
-     *
+     * @Rest\View()
+     * @Rest\Get("/{id}")
      */
-    public function newAction(Request $request)
-    {
-        $user = new Users();
-        $form = $this->createForm('Nano\FifaBundle\Form\UsersType', $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-
-            return $this->redirectToRoute('users_show', array('id' => $user->getId()));
+    public function findAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Users')->find($request->get('id'));
+        if (empty($entity)) {
+            $reponse = new JsonResponse(array('message' => "contenu introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->render('users/new.html.twig', array(
-            'user' => $user,
-            'form' => $form->createView(),
-        ));
+        return $entity;
     }
 
     /**
-     * Finds and displays a user entity.
-     *
+     * @Rest\View(statusCode=Response::HTTP_CREATED)
+     * @Rest\Post("/create")
      */
-    public function showAction(Users $user)
-    {
-        $deleteForm = $this->createDeleteForm($user);
+    public function createAction(Request $request) {
+        $entity = new Users();
+        $form = $this->createForm(UsersType::class, $entity);
 
-        return $this->render('users/show.html.twig', array(
-            'user' => $user,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+        $form->submit($request->request->all()); // Validation des données
 
-    /**
-     * Displays a form to edit an existing user entity.
-     *
-     */
-    public function editAction(Request $request, Users $user)
-    {
-        $deleteForm = $this->createDeleteForm($user);
-        $editForm = $this->createForm('Nano\FifaBundle\Form\UsersType', $user);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('users_edit', array('id' => $user->getId()));
+        if ($form->isValid()) {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($entity);
+                $em->flush();
+                return $entity;
+            } catch (\Doctrine\DBAL\Exception\NotNullConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects ou sont vides"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        } else {
+            $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->render('users/edit.html.twig', array(
-            'user' => $user,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**
-     * Deletes a user entity.
-     *
+     * @Rest\View()
+     * @Rest\Put("/update/{id}")
      */
-    public function deleteAction(Request $request, Users $user)
-    {
-        $form = $this->createDeleteForm($user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
-            $em->flush();
+    public function updateAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Users')->find($request->get('id'));
+        if (empty($entity)) {
+            $reponse = new JsonResponse(array('message' => "contenu introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
         }
-
-        return $this->redirectToRoute('users_index');
+        $form = $this->createForm(UsersType::class, $entity);
+        $form->submit($request->request->all(), true); // Validation des données
+        if ($form->isValid()) {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->merge($entity);
+                $em->flush();
+                return $entity;
+            } catch (\Doctrine\DBAL\Exception\NotNullConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects ou sont vides"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        } else {
+            $reponse = new JsonResponse(array('message' => "certains champs ne sont pas corrects"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
+        }
     }
 
     /**
-     * Creates a form to delete a user entity.
-     *
-     * @param Users $user The user entity
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
+     * @Rest\Delete("/delete/{id}")
      */
-    private function createDeleteForm(Users $user)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('users_delete', array('id' => $user->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+    public function removeAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('NanoFifaBundle:Users')
+            ->find($request->get('id'));
+
+        if ($entity) {
+            try {
+                $em->remove($entity);
+                $em->flush();
+            } catch (\Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException $e) {
+                $reponse = new JsonResponse(array('message' => "ce contenu est utilisé ailleurs"), Response::HTTP_INTERNAL_SERVER_ERROR);
+                $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+                return $reponse;
+            }
+        }else{
+            $reponse = new JsonResponse(array('message' => "ce contenu est introuvable"), Response::HTTP_INTERNAL_SERVER_ERROR);
+            $reponse->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            return $reponse;
+        }
     }
+
 }

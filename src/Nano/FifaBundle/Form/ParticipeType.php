@@ -22,7 +22,9 @@ class ParticipeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Nano\FifaBundle\Entity\Participe'
+            'data_class' => 'Nano\FifaBundle\Entity\Participe',
+            'csrf_protection' => false,
+            'allow_extra_fields' => true
         ));
     }
 
