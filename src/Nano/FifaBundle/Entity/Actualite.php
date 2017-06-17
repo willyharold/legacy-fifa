@@ -88,7 +88,7 @@ class Actualite
      *
      * @return string
      */
-    public function getTitre()
+    public function  getTitre()
     {
         return $this->titre;
     }
@@ -124,7 +124,7 @@ class Actualite
      *
      * @return Actualite
      */
-    public function setEtat($etat)
+    public function  setEtat($etat)
     {
         $this->etat = $etat;
 
